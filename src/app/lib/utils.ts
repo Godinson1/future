@@ -8,7 +8,8 @@ export const getUserMessage = () => {
     ],
     hr = new Date().getHours();
   for (var i = 0; i < data.length; i++) {
-    if (hr >= data[i][0]) {
+    const time = data[i][0] as number;
+    if (hr >= time) {
       return `${data[i][1]}`;
     }
   }
