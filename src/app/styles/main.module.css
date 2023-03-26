@@ -1,0 +1,10 @@
+.text_header {
+  text-align: center;
+}
+
+.header_base {
+  text-align: center;
+  font-size: 1rem;
+  padding: 20px;
+  color: #8993a4;
+}

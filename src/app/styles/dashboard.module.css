@@ -1,0 +1,12 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+.dashboard_content {
+  border-radius: 5px;
+  padding: 10px;
+  background-color: lightgray;
+}
