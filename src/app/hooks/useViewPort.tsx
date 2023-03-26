@@ -5,12 +5,14 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 const viewportContext = createContext({});
 
 const ViewportProvider = ({ children }: any) => {
-  const [width, setWidth] = useState<number>(window.innerWidth);
-  const [height, setHeight] = useState<number>(window.innerHeight);
+  const [width, setWidth] = useState<number>();
+  const [height, setHeight] = useState<number>();
 
   const handleWindowResize = () => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
+    if (window !== undefined) {
+      setWidth(window.innerWidth);
+      setHeight(window.innerHeight);
+    }
   };
 
   useEffect(() => {
