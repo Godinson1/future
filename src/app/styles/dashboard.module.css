@@ -1,12 +1,65 @@
 .dashboard {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
   gap: 30px;
+  transition: 2000 ease-in-out all;
 }
 
 .dashboard_content {
   border-radius: 5px;
+  width: 100%;
   padding: 10px;
-  background-color: lightgray;
+  margin-bottom: 10px;
+  background-color: rgb(250, 250, 250);
+}
+
+.purchase_container {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  width: 210px;
+  border-radius: 5px;
+  height: 300px;
+  background-color: white;
+}
+
+.purchase_image {
+  width: 100%;
+  max-height: 160px;
+  background-color: antiquewhite;
+}
+
+.base {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: rgb(78, 74, 74);
+}
+
+.purchase_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 4px;
+}
+
+.updater {
+  cursor: pointer;
+}
+
+#dash_input {
+  width: 300;
+}
+
+@media screen and (max-width: 640px) {
+  .purchase_container {
+    width: 100%;
+  }
+
+  .btn_add,
+  #dash_input {
+    width: 100px;
+  }
 }

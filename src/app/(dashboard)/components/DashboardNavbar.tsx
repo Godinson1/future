@@ -7,6 +7,7 @@ import { BsChatLeft } from "react-icons/bs";
 import { RiNotification3Line } from "react-icons/ri";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Tooltip from "@mui/material/Tooltip";
+import Badge from "@mui/material/Badge";
 import avatar from "@/assets/avatar.jpg";
 import { useStateContext } from "@/app/contexts/ContextProvider";
 
@@ -23,25 +24,27 @@ interface NavButtonProps {
   icon: any;
   color: string;
   dotColor?: string;
+  count?: number;
 }
 
-const NavButton = ({ title, customFunc, icon, color, dotColor }: NavButtonProps) => (
+const NavButton = ({ title, customFunc, icon, color, count }: NavButtonProps) => (
   <Tooltip title={title} placement='bottom'>
-    <button
-      type='button'
-      onClick={() => customFunc()}
-      style={{ color }}
-      className='relative text-xl rounded-full p-3 hover:bg-light-gray'
-    >
-      <span style={{ background: dotColor }} className='absolute inline-flex rounded-full h-2 w-2 right-2 top-2' />
-      {icon}
-    </button>
+    <Badge overlap='circular' color='secondary' badgeContent={count}>
+      <button
+        type='button'
+        onClick={() => customFunc()}
+        style={{ color }}
+        className='relative text-xl rounded-full p-3 hover:bg-light-gray'
+      >
+        {icon}
+      </button>
+    </Badge>
   </Tooltip>
 );
 
 const DashboardNavbar = () => {
   const { width } = useViewport();
-  const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked } = useStateContext();
+  const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, cartLength } = useStateContext();
 
   useEffect(() => {
     if (width <= 900) {
@@ -57,13 +60,19 @@ const DashboardNavbar = () => {
       <div className='flex'>
         <NavButton title='Menu' customFunc={() => setActiveMenu(!activeMenu)} color={currentColor} icon={<AiOutlineMenu />} />
         {!activeMenu && (
-          <div className='mb-3 '>
+          <div className='mb-3 ml-[-20px]'>
             <FutureLogo />
           </div>
         )}
       </div>
       <div className='flex'>
-        <NavButton title='Cart' customFunc={() => handleClick("cart")} color={currentColor} icon={<FiShoppingCart />} />
+        <NavButton
+          title='Cart'
+          count={cartLength}
+          customFunc={() => handleClick("cart")}
+          color={currentColor}
+          icon={<FiShoppingCart />}
+        />
         <NavButton
           title='Messages'
           dotColor='#03C9D7'

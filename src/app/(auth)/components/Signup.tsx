@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import React from "react";
 import Copyright from "@/components/ui/Copyright";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -70,10 +70,16 @@ export default function SignUp() {
                 />
               </Grid>
             </Grid>
-            <Button style={{ backgroundColor: "#7c66da" }} type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+            <Button
+              style={{ backgroundColor: "#7c66da", height: 50 }}
+              type='submit'
+              fullWidth
+              variant='contained'
+              sx={{ mt: 3, mb: 2 }}
+            >
               Sign Up
             </Button>
-            <Button style={{ backgroundColor: "#1565c0" }} fullWidth variant='contained' sx={{ mb: 2 }}>
+            <Button style={{ backgroundColor: "#1565c0", height: 50 }} fullWidth variant='contained' sx={{ mb: 2 }}>
               Sign Up with Google
             </Button>
             <Grid container justifyContent='center'>

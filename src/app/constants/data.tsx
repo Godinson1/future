@@ -8,6 +8,17 @@ import avatar4 from "@/assets/avatar4.jpg";
 import product5 from "@/assets/product5.jpg";
 import product6 from "@/assets/product6.jpg";
 import product7 from "@/assets/product7.jpg";
+import { StaticImageData } from "next/image";
+
+export interface ICartData {
+  id: number;
+  name: string;
+  image: StaticImageData | string;
+  price: number;
+  category: string;
+  quantity: number;
+  total: number;
+}
 
 export const userProfileData = [
   {
@@ -60,23 +71,77 @@ export const chatData = [
   },
 ];
 
-export const cartData = [
+export const cartData: ICartData[] = [
   {
+    id: 1,
     image: product5,
-    name: "butterscotch ice-cream",
+    name: "butterscotch ice-cream and beans",
     category: "Milk product",
-    price: "$250",
+    price: 250,
+    quantity: 1,
+    total: 0,
   },
   {
+    id: 2,
     image: product6,
     name: "Supreme fresh tomato",
     category: "Vegetable Item",
-    price: "$450",
+    price: 450,
+    quantity: 1,
+    total: 0,
   },
   {
+    id: 3,
     image: product7,
     name: "Red color candy",
     category: "Food Item",
-    price: "$190",
+    price: 190,
+    quantity: 1,
+    total: 0,
+  },
+  {
+    id: 4,
+    image: product5,
+    name: "Cake Cafe",
+    category: "Food Item",
+    price: 690,
+    quantity: 1,
+    total: 0,
+  },
+  {
+    id: 5,
+    image: product5,
+    name: "butterscotch ice-cream and beans",
+    category: "Milk product",
+    price: 250,
+    quantity: 1,
+    total: 0,
+  },
+  {
+    id: 6,
+    image: product6,
+    name: "Supreme fresh tomato",
+    category: "Vegetable Item",
+    price: 450,
+    quantity: 1,
+    total: 0,
+  },
+  {
+    id: 7,
+    image: product7,
+    name: "Red color candy",
+    category: "Food Item",
+    price: 190,
+    quantity: 1,
+    total: 0,
+  },
+  {
+    id: 8,
+    image: product5,
+    name: "Cake Cafe",
+    category: "Food Item",
+    price: 690,
+    quantity: 1,
+    total: 0,
   },
 ];

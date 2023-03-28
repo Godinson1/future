@@ -6,11 +6,6 @@ import AppStoreLight from "@/assets/apple-light.svg";
 import { MobileAppButtonProps } from "./MobileAppButton";
 import MobileAppButton from "./MobileAppButton";
 import { useTheme } from "next-themes";
-// import { GooglePlayButton, AppGalleryButton, ButtonsContainer } from "react-mobile-app-button";
-
-interface MobileButtonProps {
-  theme?: "light" | "dark";
-}
 
 const MobileButton = () => {
   const { theme } = useTheme();
@@ -19,7 +14,7 @@ const MobileButton = () => {
   const iOSUrl = "#";
 
   return (
-    <div className='flex gap-5'>
+    <div className='flex flex-wrap justify-center items-center gap-5'>
       <GooglePlayButton url={APKUrl} title='GET IT ON' theme={themeClass} />
       <AppStoreButton url={iOSUrl} title='Download on the' theme={themeClass} />
     </div>

@@ -1,5 +1,12 @@
 import React, { ReactNode } from "react";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Button from "@mui/material/Button";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { MdOutlineCancel } from "react-icons/md";
+import AddIcon from "@mui/icons-material/Add";
 import styles from "../../styles/button.module.css";
+import { purchaseType, updateType } from "@/app/hooks/useCart";
+import { ICartData } from "@/app/constants/data";
 
 interface ButtonProps {
   children: ReactNode;
@@ -9,7 +16,14 @@ interface ButtonProps {
   size?: "small" | "large";
 }
 
-const Button = ({ children, loading, onClick, outline, size }: ButtonProps) => {
+interface CartIncrementorProps {
+  cartData: ICartData[];
+  item: ICartData;
+  updateCartData: (cartData: ICartData[], item: ICartData, type: updateType, purchase_type: purchaseType.CART) => void;
+  removeFromCart: (item: ICartData) => void;
+}
+
+const IButton = ({ children, loading, onClick, outline, size }: ButtonProps) => {
   return (
     <div>
       <button
@@ -22,4 +36,26 @@ const Button = ({ children, loading, onClick, outline, size }: ButtonProps) => {
   );
 };
 
-export default Button;
+export const CartIncrementor = ({ cartData, item, updateCartData, removeFromCart }: CartIncrementorProps) => {
+  const isRemove = item.quantity < 2;
+
+  return (
+    <div className='flex gap-4 mt-2 items-center'>
+      <p className='font-semibold text-lg'>${item.total}</p>
+      <ButtonGroup>
+        <Button
+          aria-label='reduce'
+          onClick={() => (isRemove ? removeFromCart(item) : updateCartData(cartData, item, updateType.DECREMENT, purchaseType.CART))}
+        >
+          {isRemove ? <MdOutlineCancel fontSize='small' /> : <RemoveIcon fontSize='small' />}
+        </Button>
+        <Button disabled>{item.quantity}</Button>
+        <Button aria-label='increase' onClick={() => updateCartData(cartData, item, updateType.INCREMENT, purchaseType.CART)}>
+          <AddIcon fontSize='small' />
+        </Button>
+      </ButtonGroup>
+    </div>
+  );
+};
+
+export default IButton;

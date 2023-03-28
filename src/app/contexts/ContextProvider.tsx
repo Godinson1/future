@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, ReactNode, useContext, useState } from "react";
+import { useCart } from "@/app/hooks/useCart";
 
 const initialState = {
   chat: false,
@@ -17,6 +18,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [themeSettings, setThemeSettings] = useState(false);
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setIsClicked] = useState(initialState);
+
+  const { isCartData, cart, removeFromCart, addToCart, totalCart, updateQuantity } = useCart();
 
   const setMode = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentMode(e.target.value);
@@ -47,6 +50,13 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         setColor,
         themeSettings,
         setThemeSettings,
+        removeFromCart,
+        addToCart,
+        isCartData,
+        cart,
+        totalCart,
+        updateQuantity,
+        cartLength: cart && cart.length,
       }}
     >
       {children}

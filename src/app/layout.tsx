@@ -1,5 +1,4 @@
 import "./globals.css";
-import Provider from "./components/Provider";
 import { ViewportProvider } from "@/hooks/useViewPort";
 import { ContextProvider } from "./contexts/ContextProvider";
 
@@ -13,9 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body>
         <ViewportProvider>
-          <Provider>
-            <ContextProvider>{children}</ContextProvider>
-          </Provider>
+          <ContextProvider>{children}</ContextProvider>
         </ViewportProvider>
       </body>
     </html>

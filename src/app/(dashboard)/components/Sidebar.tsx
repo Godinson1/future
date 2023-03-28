@@ -50,7 +50,6 @@ const Sidebar = () => {
                     href={link.path}
                     key={link.name}
                     onClick={handleCloseSideBar}
-                    style={{ backgroundColor: pathname == `${link.path}` ? currentColor : "" }}
                     className={pathname == `${link.path}` ? activeLink : `${normalLink} ${styles.nlink}`}
                   >
                     {link.icon}

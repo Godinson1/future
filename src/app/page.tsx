@@ -18,7 +18,7 @@ export default function Home() {
     <main className={styles.main}>
       <Navbar />
       <Container component='main'>
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
           <Header variant='h2'>Invest in the Future with our cryptocurrency platform.</Header>
           <Container maxWidth='sm'>
             <Paragraph variant='body1' className={"header_base"}>
