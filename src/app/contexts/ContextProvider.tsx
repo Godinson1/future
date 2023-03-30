@@ -10,6 +10,12 @@ const initialState = {
   notification: false,
 };
 
+const initialModalState = {
+  add_inventory: false,
+  update_inventory: false,
+  upload_inventory: false,
+};
+
 const StateContext = createContext({} as any);
 
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
@@ -18,6 +24,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [themeSettings, setThemeSettings] = useState(false);
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setIsClicked] = useState(initialState);
+  const [isModalPageClicked, setIsModalPageClicked] = useState(initialModalState);
 
   const { isCartData, cart, removeFromCart, addToCart, totalCart, updateQuantity } = useCart();
 
@@ -32,6 +39,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handleClick = (clicked: string) => setIsClicked({ ...initialState, [clicked]: true });
+  const handleModalPageClick = (clicked: string) => setIsModalPageClicked({ ...initialModalState, [clicked]: true });
 
   return (
     <StateContext.Provider
@@ -42,6 +50,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         handleClick,
         isClicked,
         initialState,
+        initialModalState,
         setIsClicked,
         setActiveMenu,
         setCurrentColor,
@@ -56,6 +65,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         cart,
         totalCart,
         updateQuantity,
+        isModalPageClicked,
+        handleModalPageClick,
         cartLength: cart && cart.length,
       }}
     >
