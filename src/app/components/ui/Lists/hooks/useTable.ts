@@ -1,9 +1,9 @@
 import React from "react";
-import { rows, IData } from "@/constants/list";
+import { IData } from "@/constants/list";
 
 type Order = "asc" | "desc";
 
-export const useTable = () => {
+export const useTable = (rows: any[]) => {
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof IData>("calories");
   const [selected, setSelected] = React.useState<readonly string[]>([]);
@@ -25,12 +25,12 @@ export const useTable = () => {
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event: React.MouseEvent<unknown>, name: string | number) => {
+    const selectedIndex = selected.indexOf(String(name));
     let newSelected: readonly string[] = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, String(name));
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -51,7 +51,7 @@ export const useTable = () => {
     setPage(0);
   };
 
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
+  const isSelected = (name: string | number) => selected.indexOf(String(name)) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;

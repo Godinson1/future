@@ -15,11 +15,11 @@ import { useTable } from "./hooks/useTable";
 
 interface TableListProps {
   title: string;
-  rows: any[];
+  data: any[];
   headerCells: readonly any[];
 }
 
-const TableList = ({ title, headerCells }: TableListProps) => {
+const TableList = ({ title, headerCells, data }: TableListProps) => {
   const {
     handleClick,
     rows,
@@ -34,7 +34,9 @@ const TableList = ({ title, headerCells }: TableListProps) => {
     handleChangeRowsPerPage,
     isSelected,
     emptyRows,
-  } = useTable();
+  } = useTable(data);
+
+  const stringColumns = ["name", "image"];
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -63,7 +65,7 @@ const TableList = ({ title, headerCells }: TableListProps) => {
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
+                .map((row: any, index) => {
                   const isItemSelected = isSelected(row.name);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -79,28 +81,19 @@ const TableList = ({ title, headerCells }: TableListProps) => {
                       sx={{ cursor: "pointer" }}
                     >
                       <TableCell padding='checkbox'>
-                        <Checkbox
-                          color='primary'
-                          checked={isItemSelected}
-                          inputProps={{
-                            "aria-labelledby": labelId,
-                          }}
-                        />
+                        <Checkbox color='primary' checked={isItemSelected} inputProps={{ "aria-labelledby": labelId }} />
                       </TableCell>
-                      <TableCell component='th' id={labelId} scope='row'>
-                        {row.name}
-                      </TableCell>
-                      <TableCell align='right'>{row.calories}</TableCell>
-                      <TableCell align='right'>{row.fat}</TableCell>
-                      <TableCell align='right'>{row.carbs}</TableCell>
-                      <TableCell align='right'>{row.protein}</TableCell>
-                      <TableCell align='right'>{row.carbs}</TableCell>
-                      <TableCell align='right'>{row.protein}</TableCell>
-                      <TableCell align='right'>{row.carbs}</TableCell>
-                      <TableCell align='right'>{row.protein}</TableCell>
-                      <TableCell align='right'>{row.protein}</TableCell>
-                      <TableCell align='right'>{row.carbs}</TableCell>
-                      <TableCell align='right'>{row.protein}</TableCell>
+                      {headerCells.map((column: any, index: number) =>
+                        stringColumns.includes(column.id) ? (
+                          <TableCell key={index} id={labelId} scope='row'>
+                            {row[column.id]}
+                          </TableCell>
+                        ) : (
+                          <TableCell key={index} align='right'>
+                            {row[column.id]}
+                          </TableCell>
+                        )
+                      )}
                     </TableRow>
                   );
                 })}

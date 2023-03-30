@@ -8,8 +8,8 @@ import { rows } from "@/app/constants/list";
 const page = () => {
   return (
     <div>
-      <TableList rows={rows} title='Products' headerCells={InventoryHeaderCell} />
-      <TableList rows={rows} title='Inventory' headerCells={InventoryHeaderCell} />
+      <TableList data={rows} title='Products' headerCells={InventoryHeaderCell} />
+      <TableList data={rows} title='Inventory' headerCells={InventoryHeaderCell} />
     </div>
   );
 };
