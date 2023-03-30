@@ -15,6 +15,7 @@ import { useTable } from "./hooks/useTable";
 
 interface TableListProps {
   title: string;
+  rows: any[];
   headerCells: readonly any[];
 }
 

@@ -1,15 +1,14 @@
 "use client";
 
 import React from "react";
-import styles from "@/styles/dashboard.module.css";
 import TableList from "@/app/components/ui/Lists/Table";
 import { InventoryHeaderCell } from "./constants";
-import InventoryList from "./components/InventoryList";
+import { rows, IData } from "@/constants/list";
 
 const page = () => {
   return (
-    <div className={styles.dashboard}>
-      <TableList title='Products' headerCells={InventoryHeaderCell} />
+    <div>
+      <TableList title='Products' rows={rows} headerCells={InventoryHeaderCell} />
     </div>
   );
 };
