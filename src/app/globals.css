@@ -5,10 +5,12 @@
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .sidebar {
   top: 0%;
+  z-index: 1000;
   box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
 }
 
@@ -16,9 +18,15 @@ body {
   z-index: 10000;
   background-color: white;
 }
+
+.bg-half-transparent {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .nav-item {
   z-index: 10000;
 }
+
 @media screen and (max-width: 800px) {
   .sidebar {
     z-index: 10000000;
@@ -39,16 +47,4 @@ body {
 }
 ::-webkit-scrollbar-track {
   background-color: transparent;
-}
-
-/* color-picker style  */
-
-#preview {
-  background: transparent url("https://ej2.syncfusion.com/react/demos/src/color-picker/images/pen.png") no-repeat;
-  display: inline-block;
-  height: 80px;
-  margin: 10px 0;
-  min-width: 300px;
-  max-width: 600px;
-  background-color: #008000;
 }

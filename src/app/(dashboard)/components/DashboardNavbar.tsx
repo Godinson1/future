@@ -10,40 +10,35 @@ import Tooltip from "@mui/material/Tooltip";
 import Badge from "@mui/material/Badge";
 import avatar from "@/assets/avatar.jpg";
 import { useStateContext } from "@/app/contexts/ContextProvider";
-
-import { FutureLogo } from "@/components/ui/Logo";
 import Profile from "@/components/Profile";
 import Notification from "@/components/Notification";
 import Messages from "@/components/Messages";
 import PurchaseCart from "@/components/PurchaseCart";
 import { useViewport } from "@/hooks/useViewPort";
+import IconButton from "@mui/material/IconButton/IconButton";
+import usePageTitle from "@/app/hooks/usePageTitle";
+
+import styles from "@/styles/dashboard.module.css";
 
 interface NavButtonProps {
   title: string;
   customFunc: Function;
   icon: any;
-  color: string;
   dotColor?: string;
   count?: number;
 }
 
-const NavButton = ({ title, customFunc, icon, color, count }: NavButtonProps) => (
+const NavButton = ({ title, customFunc, icon, count }: NavButtonProps) => (
   <Tooltip title={title} placement='bottom'>
     <Badge overlap='circular' color='secondary' badgeContent={count}>
-      <button
-        type='button'
-        onClick={() => customFunc()}
-        style={{ color }}
-        className='relative text-xl rounded-full p-3 hover:bg-light-gray'
-      >
-        {icon}
-      </button>
+      <IconButton onClick={() => customFunc()}>{icon}</IconButton>
     </Badge>
   </Tooltip>
 );
 
 const DashboardNavbar = () => {
   const { width } = useViewport();
+  const { pageTitle, isGreeting } = usePageTitle();
   const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, cartLength } = useStateContext();
 
   useEffect(() => {
@@ -56,36 +51,33 @@ const DashboardNavbar = () => {
   }, [width]);
 
   return (
-    <div className='flex justify-between p-2 md:ml-6 md:mr-6 relative'>
+    <div className={`${styles.dashboard_nav} ${activeMenu ? styles.dashboard_nav_active : styles.dashboard_nav_full}`}>
       <div className='flex'>
-        <NavButton title='Menu' customFunc={() => setActiveMenu(!activeMenu)} color={currentColor} icon={<AiOutlineMenu />} />
-        {!activeMenu && (
-          <div className='mb-3 ml-[-20px]'>
-            <FutureLogo />
-          </div>
-        )}
+        <div className='flex justify-center items-center'>
+          <IconButton onClick={() => setActiveMenu(!activeMenu)}>
+            <AiOutlineMenu color={currentColor} />
+          </IconButton>
+          <p className={`uppercase font-bold`}> {pageTitle}</p>
+        </div>
       </div>
-      <div className='flex'>
+      <div className='flex gap-3 justify-center items-center'>
         <NavButton
           title='Cart'
           count={cartLength}
           customFunc={() => handleClick("cart")}
-          color={currentColor}
-          icon={<FiShoppingCart />}
+          icon={<FiShoppingCart color={currentColor} />}
         />
         <NavButton
           title='Messages'
           dotColor='#03C9D7'
           customFunc={() => handleClick("chat")}
-          color={currentColor}
-          icon={<BsChatLeft />}
+          icon={<BsChatLeft color={currentColor} />}
         />
         <NavButton
           title='Notifications'
           dotColor='rgb(254, 201, 15)'
           customFunc={() => handleClick("notification")}
-          color={currentColor}
-          icon={<RiNotification3Line />}
+          icon={<RiNotification3Line color={currentColor} />}
         />
         <Tooltip title='Profile' placement='bottom'>
           <div

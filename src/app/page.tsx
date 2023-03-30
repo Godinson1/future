@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Header from "@/components/ui/Header";
-import Paragraph from "@/components/ui/Paragraph";
+import { Roboto } from "next/font/google";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Button from "@/components/ui/Button";
@@ -10,6 +9,8 @@ import Navbar from "@/components/ui/Navbar";
 import MobileButton from "@/components/ui/MobileButton";
 
 import styles from "./page.module.css";
+
+const roboto = Roboto({ subsets: ["latin"], weight: "900" });
 
 export default function Home() {
   const router = useRouter();
@@ -19,11 +20,11 @@ export default function Home() {
       <Navbar />
       <Container component='main'>
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-          <Header variant='h2'>Invest in the Future with our cryptocurrency platform.</Header>
+          <h2 className={`${roboto.className} ${styles.text_header}`}>Creating a future with seamless possibilities.</h2>
           <Container maxWidth='sm'>
-            <Paragraph variant='body1' className={"header_base"}>
-              Buy, sell, and trade cryptocurrencies while keeping your assets secure and your transactions fast and efficient.
-            </Paragraph>
+            <p className={styles.header_base}>
+              Buy, Pay, Chat and Manage while keeping your assets secure and your transactions fast and efficient.
+            </p>
           </Container>
         </Box>
         <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 3 }}>

@@ -3,16 +3,14 @@
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 30px;
-  transition: 2000 ease-in-out all;
+  gap: 10px;
 }
 
 .dashboard_content {
   border-radius: 5px;
   width: 100%;
-  padding: 10px;
   margin-bottom: 10px;
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(198, 182, 206);
 }
 
 .purchase_container {
@@ -45,8 +43,58 @@
   padding: 4px;
 }
 
-.updater {
-  cursor: pointer;
+.dashboard_container {
+  width: 100vw;
+  overflow: auto;
+}
+
+.dashboard_sidebar {
+  height: 100vh;
+  width: 18rem;
+  position: fixed;
+  overflow: auto;
+  background-color: white;
+}
+
+.dashboard_nav {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  padding: 10px;
+  top: 0%;
+  z-index: 100000;
+  background-color: white;
+}
+
+.dashboard_nav_active {
+  width: calc(100vw - 18rem);
+}
+
+.dashboard_nav_full {
+  width: 100vw;
+}
+
+.dashboard_child {
+  margin-top: 80px;
+  padding: 20px;
+}
+
+.dashboard_main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 20px;
+  background-color: rgb(254, 254, 255);
+}
+
+.dashboard_main_active {
+  margin-left: 18rem;
+}
+
+.dashboard_main_full {
+  margin-left: 0;
 }
 
 #dash_input {
@@ -61,5 +109,9 @@
   .btn_add,
   #dash_input {
     width: 100px;
+  }
+
+  .dashboard {
+    margin-top: 10px;
   }
 }

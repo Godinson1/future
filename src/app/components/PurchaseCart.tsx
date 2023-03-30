@@ -6,10 +6,8 @@ import Image from "next/image";
 
 import { CartIncrementor } from "@/components/ui/Button";
 import { ICartData } from "../constants/data";
-import { useViewport } from "../hooks/useViewPort";
 
 const PurchaseCart = () => {
-  const { width } = useViewport();
   const { currentColor, cart, updateQuantity, removeFromCart, totalCart } = useStateContext();
 
   const handlePlaceOrder = (cartItems: ICartData[]) => {
@@ -18,7 +16,7 @@ const PurchaseCart = () => {
 
   return (
     <div className='bg-half-transparent w-full fixed nav-item top-0 right-0'>
-      <div className='overflow-auto float-right h-screen duration-1000 ease-in-out transition-all bg-white md:w-400 p-8'>
+      <div className='overflow-auto float-right h-screen duration-1000 ease-in-out transition-all bg-white p-8'>
         <div className='flex justify-between items-center'>
           <p className='font-semibold text-lg'>Purchase Cart</p>
           <ButtonIcon icon={<MdOutlineCancel />} color='rgb(153, 171, 180)' bgHoverColor='light-gray' size='2xl' borderRadius='50%' />

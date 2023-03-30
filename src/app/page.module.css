@@ -1,6 +1,26 @@
 .main {
-  margin-top: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+}
+
+.text_header {
+  text-align: center;
+  font-size: 4.5rem;
+  line-height: 70px;
+}
+
+.header_base {
+  text-align: center;
+  font-size: 1rem;
+  padding: 20px;
+  color: #737a88;
+}
+
+@media screen and (max-width: 768px) {
+  .text_header {
+    font-size: 3rem;
+    line-height: 55px;
+  }
 }

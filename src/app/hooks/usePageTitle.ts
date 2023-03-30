@@ -6,7 +6,7 @@ const usePageTitle = () => {
   const pathname = usePathname();
   const splittedPath = pathname.split("/");
   const pathToUse = splittedPath[splittedPath.length - 1];
-  const title = `PAGE / ${pathToUse}`;
+  const title = `${pathToUse}`;
   const isGreeting = pathToUse === "dashboard";
   const pageTitle = isGreeting ? "Hello Godwin," : title;
 

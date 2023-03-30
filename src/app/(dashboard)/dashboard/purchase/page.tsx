@@ -48,13 +48,14 @@ const Page = () => {
           onChange={(event: any, newValue: string | null) => filterByCategory(newValue as string)}
           options={getCategories()}
           sx={{ width: inputWidth }}
-          renderInput={(params) => <TextField {...params} label='Search by Categories' />}
+          renderInput={(params) => <TextField {...params} size='small' label='Search by Categories' />}
         />
         <TextField
           onChange={(e: any) => setSearch(e.target.value)}
           label='Search by Name'
           sx={{ width: inputWidth }}
           variant='outlined'
+          size='small'
         />
       </div>
       <div className='flex flex-wrap gap-5'>{cartData ? getFilteredList(filteredItems) : ""}</div>
