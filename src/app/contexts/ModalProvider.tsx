@@ -5,7 +5,7 @@ import Backdrop from "@mui/material/Backdrop";
 
 import styles from "@/styles/main.module.css";
 import IconButton from "@mui/material/IconButton";
-import { MdCancel } from "react-icons/md";
+import { MdOutlineCancel } from "react-icons/md";
 import { useStateContext } from "@/app/contexts/ContextProvider";
 
 interface ModalProviderProps {
@@ -31,7 +31,7 @@ export const ModalProvider = ({ children, title, type, open }: ModalProviderProp
             {type} {title}
           </div>
           <IconButton onClick={() => handleModalPageClick(initialModalState)}>
-            <MdCancel color={currentColor} />
+            <MdOutlineCancel color={currentColor} size={26} />
           </IconButton>
         </div>
         {children}

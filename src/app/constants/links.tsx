@@ -54,19 +54,9 @@ export const SIDEBAR_LINKS = [
         path: "/dashboard/clients",
       },
       {
-        name: "appointments",
-        icon: <AiOutlineCalendar />,
-        path: "/dashboard/appointments",
-      },
-      {
         name: "inventory",
         icon: <BsKanban />,
         path: "/dashboard/inventory",
-      },
-      {
-        name: "manager",
-        icon: <BsKanban />,
-        path: "/dashboard/manager",
       },
     ],
   },

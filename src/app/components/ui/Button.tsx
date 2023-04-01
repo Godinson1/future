@@ -7,6 +7,8 @@ import AddIcon from "@mui/icons-material/Add";
 import styles from "../../styles/button.module.css";
 import { purchaseType, updateType } from "@/app/hooks/useCart";
 import { ICartData } from "@/app/constants/data";
+import IconButton from "@mui/material/IconButton";
+import Delete from "@mui/icons-material/Delete";
 
 interface ButtonProps {
   children: ReactNode;
@@ -40,8 +42,10 @@ export const CartIncrementor = ({ cartData, item, updateCartData, removeFromCart
   const isRemove = item.quantity < 2;
 
   return (
-    <div className='flex gap-4 mt-2 items-center'>
-      <p className='font-semibold text-lg'>${item.total}</p>
+    <div className='flex justify-between gap-4 mt-2 items-center'>
+      <IconButton onClick={() => removeFromCart(item)}>
+        <Delete />
+      </IconButton>
       <ButtonGroup>
         <Button
           aria-label='reduce'

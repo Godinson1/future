@@ -35,7 +35,7 @@ const AppStoreButton = ({ theme, height, width, url, title }: MobileAppButtonPro
       name={"App Store"}
       theme={theme}
       title={title}
-      logo={theme === "dark" ? AppStoreLight : AppStore}
+      logo={theme === "dark" ? AppStore  : AppStoreLight}
       url={url}
     />
   );

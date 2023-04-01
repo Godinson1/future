@@ -22,9 +22,7 @@ export default function Home() {
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
           <h2 className={`${roboto.className} ${styles.text_header}`}>Creating a future with seamless possibilities.</h2>
           <Container maxWidth='sm'>
-            <p className={styles.header_base}>
-              Buy, Pay, Chat and Manage while keeping your assets secure and your transactions fast and efficient.
-            </p>
+            <p className={`${roboto.className} ${styles.header_base}`}>Buy, pay, chat and manage activities all in one place.</p>
           </Container>
         </Box>
         <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 3 }}>

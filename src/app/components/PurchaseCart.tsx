@@ -29,32 +29,43 @@ const PurchaseCart = () => {
                 <div>
                   <p className='font-semibold leading-5 capitalize'>{item.name}</p>
                   <p className='text-gray-600 dark:text-gray-400 text-sm font-semibold'>{item.category}</p>
-                  <CartIncrementor removeFromCart={removeFromCart} updateCartData={updateQuantity} cartData={cart} item={item} />
+                  <p className='font-semibold text-lg'>
+                    ${item.price} <span className='text-sm text-slate-500'>x {item.quantity}</span>
+                  </p>
                 </div>
               </div>
+              <CartIncrementor removeFromCart={removeFromCart} updateCartData={updateQuantity} cartData={cart} item={item} />
             </div>
           </div>
         ))}
-        <div className='mt-3 mb-3'>
-          <div className='flex justify-between items-center'>
-            <p className='text-gray-500'>Sub Total</p>
-            <p className='font-semibold'>${totalCart}</p>
+        {cart.length ? (
+          <>
+            <div className='mt-3 mb-3'>
+              <div className='flex justify-between items-center'>
+                <p className='text-gray-500'>Sub Total</p>
+                <p className='font-semibold'>${totalCart}</p>
+              </div>
+              <div className='flex justify-between items-center mt-3'>
+                <p className='text-gray-500 dark:text-gray-200'>Total</p>
+                <p className='font-semibold'>${totalCart}</p>
+              </div>
+            </div>
+            <div className='mt-5'>
+              <ButtonIcon
+                onClick={() => handlePlaceOrder(cart)}
+                color='white'
+                bgColor={currentColor}
+                text='Place Order'
+                borderRadius='10px'
+                width='full'
+              />
+            </div>
+          </>
+        ) : (
+          <div className='flex flex-column justify-center items-center h-screen'>
+            <p>Cart is empty - Add Items</p>
           </div>
-          <div className='flex justify-between items-center mt-3'>
-            <p className='text-gray-500 dark:text-gray-200'>Total</p>
-            <p className='font-semibold'>${totalCart}</p>
-          </div>
-        </div>
-        <div className='mt-5'>
-          <ButtonIcon
-            onClick={() => handlePlaceOrder(cart)}
-            color='white'
-            bgColor={currentColor}
-            text='Place Order'
-            borderRadius='10px'
-            width='full'
-          />
-        </div>
+        )}
       </div>
     </div>
   );

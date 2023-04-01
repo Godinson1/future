@@ -1,3 +1,4 @@
+import Script from "next/script";
 import "./globals.css";
 import { ViewportProvider } from "@/hooks/useViewPort";
 import { ContextProvider } from "./contexts/ContextProvider";
