@@ -14,6 +14,10 @@ const initialModalState = {
   add_inventory: false,
   update_inventory: false,
   upload_inventory: false,
+  fund: false,
+  send: false,
+  buy: false,
+  payment_settings: false,
 };
 
 const StateContext = createContext({} as any);
