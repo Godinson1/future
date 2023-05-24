@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import OverviewChart from "./charts/Overview";
+import BaseParagraph from "@/components/Paragraph";
 import OverviewChart1 from "./charts/OverviewChart1";
 import styles from "./styles/overview.module.css";
 
@@ -32,24 +32,20 @@ const page = () => {
               <p className='font-bold'>
                 Total Purchase <span className='text-sm text-green-600'> See all</span>
               </p>
-              <span className='text-gray-400 text-sm'>Jan 30, 2023 - June 30, 2023</span>
+              <BaseParagraph text='Jan 30, 2023 - June 30, 2023' />
             </div>
             <div>
               <p className='font-bold text-4xl'>$895.30k</p>
               <p className='text-gray-400 text-sm'>
-                <span className='text-sm text-green-600'>9.2%</span> vs 6 months before
+                <span className='text-sm text-green-600'>9.2%</span> <BaseParagraph text='vs 6 months before' />
               </p>
             </div>
-          </div>
-
-          <div>
-            <OverviewChart />
           </div>
         </div>
         <div className={styles.base2_container}>
           <div>
             <p className='font-bold'>Summary</p>
-            <span className='text-gray-400 text-sm'>Jan 30, 2023 - June 30, 2023</span>
+            <BaseParagraph text='Jan 30, 2023 - June 30, 2023' />
           </div>
           <div className='flex justify-between items-center gap-10'>
             <div>

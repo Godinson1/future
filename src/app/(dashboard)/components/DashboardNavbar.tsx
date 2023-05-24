@@ -13,12 +13,13 @@ import { useStateContext } from "@/app/contexts/ContextProvider";
 import Profile from "@/components/Profile";
 import Notification from "@/components/Notification";
 import Messages from "@/components/Messages";
-import PurchaseCart from "@/components/PurchaseCart";
+import PurchaseCart from "@/app/components/cart/PurchaseCart";
 import { useViewport } from "@/hooks/useViewPort";
 import IconButton from "@mui/material/IconButton/IconButton";
 import usePageTitle from "@/app/hooks/usePageTitle";
 
 import styles from "@/styles/dashboard.module.css";
+import { useCartContext } from "@/app/contexts/CartContextProvider";
 
 interface NavButtonProps {
   title: string;
@@ -38,8 +39,9 @@ const NavButton = ({ title, customFunc, icon, count }: NavButtonProps) => (
 
 const DashboardNavbar = () => {
   const { width } = useViewport();
-  const { pageTitle, isGreeting } = usePageTitle();
-  const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, cartLength } = useStateContext();
+  const { pageTitle } = usePageTitle();
+  const { cartLength } = useCartContext();
+  const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked } = useStateContext();
 
   useEffect(() => {
     if (width <= 900) {
@@ -61,29 +63,11 @@ const DashboardNavbar = () => {
         </div>
       </div>
       <div className='flex gap-3 justify-center items-center'>
-        <NavButton
-          title='Cart'
-          count={cartLength}
-          customFunc={() => handleClick("cart")}
-          icon={<FiShoppingCart color={currentColor} />}
-        />
-        <NavButton
-          title='Messages'
-          dotColor='#03C9D7'
-          customFunc={() => handleClick("chat")}
-          icon={<BsChatLeft color={currentColor} />}
-        />
-        <NavButton
-          title='Notifications'
-          dotColor='rgb(254, 201, 15)'
-          customFunc={() => handleClick("notification")}
-          icon={<RiNotification3Line color={currentColor} />}
-        />
+        <NavButton title='Cart' count={cartLength} customFunc={() => handleClick("cart")} icon={<FiShoppingCart color={currentColor} />} />
+        <NavButton title='Messages' dotColor='#03C9D7' customFunc={() => handleClick("chat")} icon={<BsChatLeft color={currentColor} />} />
+        <NavButton title='Notifications' dotColor='rgb(254, 201, 15)' customFunc={() => handleClick("notification")} icon={<RiNotification3Line color={currentColor} />} />
         <Tooltip title='Profile' placement='bottom'>
-          <div
-            className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg'
-            onClick={() => handleClick("profile")}
-          >
+          <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg' onClick={() => handleClick("profile")}>
             <Image className='rounded-full w-8 h-8' src={avatar} alt='user-profile' />
             <MdKeyboardArrowDown className='text-gray-400 text-14' />
           </div>

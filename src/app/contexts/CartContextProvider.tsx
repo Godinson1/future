@@ -1,0 +1,59 @@
+"use client";
+
+import React, { createContext, ReactNode, useContext } from "react";
+import { useCart } from "@/app/hooks/useCart";
+
+const CartContext = createContext<any>({});
+
+export const CartContextProvider = ({ children }: { children: ReactNode }) => {
+  const {
+    isCartData,
+    cart,
+    removeFromCart,
+    addToCart,
+    totalCart,
+    subTotal,
+    updateQuantity,
+    deliveryNote,
+    setDeliveryNote,
+    shippingAddress,
+    setShippingAddress,
+    paymentMethod,
+    setPaymentMethod,
+    deliveryTip,
+    setDeliveryTip,
+    getTip,
+    createOrder,
+    createOrderLoading,
+  } = useCart();
+
+  return (
+    <CartContext.Provider
+      value={{
+        removeFromCart,
+        addToCart,
+        isCartData,
+        cart,
+        totalCart,
+        subTotal,
+        updateQuantity,
+        deliveryNote,
+        setDeliveryNote,
+        shippingAddress,
+        setShippingAddress,
+        paymentMethod,
+        setPaymentMethod,
+        deliveryTip,
+        setDeliveryTip,
+        getTip,
+        createOrder,
+        createOrderLoading,
+        cartLength: cart && cart.length,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+export const useCartContext = () => useContext(CartContext);

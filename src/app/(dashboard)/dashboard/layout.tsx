@@ -1,6 +1,8 @@
 "use client";
 
 import React, { ReactNode } from "react";
+import { AuthGuard } from "@/app/hooks/useAuth";
+import { CartContextProvider } from "@/app/contexts/CartContextProvider";
 import Sidebar from "@/app/(dashboard)/components/Sidebar";
 import { useStateContext } from "@/app/contexts/ContextProvider";
 import DashboardNavbar from "@/app/(dashboard)/components/DashboardNavbar";
@@ -12,18 +14,25 @@ const DashbaordLayout = ({ children }: { children: ReactNode }) => {
   const { activeMenu } = useStateContext();
 
   return (
-    <div className={styles.dashboard_container}>
-      {activeMenu && (
-        <div className={`sidebar ${styles.dashboard_sidebar}`}>
-          <Sidebar />
+    <AuthGuard>
+      <CartContextProvider>
+        <div className={styles.dashboard_container}>
+          {activeMenu && (
+            <div className={`sidebar ${styles.dashboard_sidebar}`}>
+              <Sidebar />
+            </div>
+          )}
+          <div className={`${styles.dashboard_main} ${activeMenu ? styles.dashboard_main_active : styles.dashboard_main_full}`}>
+            <DashboardNavbar />
+            <div className={styles.dashboard_child}>
+              <div className={styles.dashboard_child_top}></div>
+              <div className={styles.dashboard_child_content}>{children}</div>
+            </div>
+            <Footer />
+          </div>
         </div>
-      )}
-      <div className={`${styles.dashboard_main} ${activeMenu ? styles.dashboard_main_active : styles.dashboard_main_full}`}>
-        <DashboardNavbar />
-        <div className={styles.dashboard_child}>{children}</div>
-        <Footer />
-      </div>
-    </div>
+      </CartContextProvider>
+    </AuthGuard>
   );
 };
 

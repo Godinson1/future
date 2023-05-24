@@ -8,10 +8,12 @@ import avatar4 from "@/assets/avatar4.jpg";
 import product5 from "@/assets/product5.jpg";
 import product6 from "@/assets/product6.jpg";
 import product7 from "@/assets/product7.jpg";
+import product8 from "@/assets/product8.jpg";
+import product4 from "@/assets/product4.jpg";
 import { StaticImageData } from "next/image";
 
 export interface ICartData {
-  id: number;
+  productId: string;
   name: string;
   image: StaticImageData | string;
   price: number;
@@ -73,74 +75,47 @@ export const chatData = [
 
 export const cartData: ICartData[] = [
   {
-    id: 1,
-    image: product5,
-    name: "butterscotch ice-cream and beans",
-    category: "Milk product",
-    price: 250,
-    quantity: 1,
-    total: 0,
-  },
-  {
-    id: 2,
+    productId: "646ddb9d0f6f319e20988e6d",
     image: product6,
-    name: "Supreme fresh tomato",
-    category: "Vegetable Item",
-    price: 450,
+    name: "Supreme Fresh Tomato",
+    category: "Vegetable",
+    price: 300,
     quantity: 1,
     total: 0,
   },
   {
-    id: 3,
+    productId: "646ddb9d0f6f319e20988e6e",
+    image: product8,
+    name: "Yummy Candy",
+    category: "Sweet",
+    price: 500,
+    quantity: 1,
+    total: 0,
+  },
+  {
+    productId: "646ddb9d0f6f319e20988e6f",
     image: product7,
-    name: "Red color candy",
-    category: "Food Item",
-    price: 190,
+    name: "Cold Stone Ice Cream",
+    category: "Desert",
+    price: 300,
     quantity: 1,
     total: 0,
   },
   {
-    id: 4,
+    productId: "646ddb9d0f6f319e20988e70",
     image: product5,
-    name: "Cake Cafe",
-    category: "Food Item",
-    price: 690,
+    name: "Pizza",
+    category: "Snack",
+    price: 1200,
     quantity: 1,
     total: 0,
   },
   {
-    id: 5,
-    image: product5,
-    name: "butterscotch ice-cream and beans",
-    category: "Milk product",
-    price: 250,
-    quantity: 1,
-    total: 0,
-  },
-  {
-    id: 6,
-    image: product6,
-    name: "Supreme fresh tomato",
-    category: "Vegetable Item",
-    price: 450,
-    quantity: 1,
-    total: 0,
-  },
-  {
-    id: 7,
-    image: product7,
-    name: "Red color candy",
-    category: "Food Item",
-    price: 190,
-    quantity: 1,
-    total: 0,
-  },
-  {
-    id: 8,
-    image: product5,
-    name: "Cake Cafe",
-    category: "Food Item",
-    price: 690,
+    productId: "646ddb9d0f6f319e20988e71",
+    image: product4,
+    name: "Hollandia",
+    category: "Drink",
+    price: 300,
     quantity: 1,
     total: 0,
   },

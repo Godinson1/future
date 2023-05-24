@@ -2,7 +2,6 @@ import React, { ReactNode } from "react";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { MdOutlineCancel } from "react-icons/md";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "../../styles/button.module.css";
 import { purchaseType, updateType } from "@/app/hooks/useCart";
@@ -18,9 +17,9 @@ interface ButtonProps {
   size?: "small" | "large";
 }
 
-interface CartIncrementorProps {
+export interface CartIncrementorProps {
   cartData: ICartData[];
-  item: ICartData;
+  item?: ICartData;
   updateCartData: (cartData: ICartData[], item: ICartData, type: updateType, purchase_type: purchaseType.CART) => void;
   removeFromCart: (item: ICartData) => void;
 }
@@ -28,10 +27,7 @@ interface CartIncrementorProps {
 const IButton = ({ children, loading, onClick, outline, size }: ButtonProps) => {
   return (
     <div>
-      <button
-        onClick={onClick}
-        className={`${outline ? styles.btn_outline : styles.btn} ${size === "large" ? styles.btn_large : styles.btn_small}`}
-      >
+      <button onClick={onClick} className={`${outline ? styles.btn_outline : styles.btn} ${size === "large" ? styles.btn_large : styles.btn_small}`}>
         {loading ? "loading..." : children}
       </button>
     </div>
@@ -39,22 +35,19 @@ const IButton = ({ children, loading, onClick, outline, size }: ButtonProps) => 
 };
 
 export const CartIncrementor = ({ cartData, item, updateCartData, removeFromCart }: CartIncrementorProps) => {
-  const isRemove = item.quantity < 2;
+  const isRemove = item && item.quantity < 2;
 
   return (
     <div className='flex justify-between gap-4 mt-2 items-center'>
-      <IconButton onClick={() => removeFromCart(item)}>
+      <IconButton onClick={() => removeFromCart(item as ICartData)}>
         <Delete />
       </IconButton>
       <ButtonGroup>
-        <Button
-          aria-label='reduce'
-          onClick={() => (isRemove ? removeFromCart(item) : updateCartData(cartData, item, updateType.DECREMENT, purchaseType.CART))}
-        >
-          {isRemove ? <MdOutlineCancel fontSize='small' /> : <RemoveIcon fontSize='small' />}
+        <Button aria-label='reduce' disabled={isRemove} onClick={() => (isRemove ? removeFromCart(item) : updateCartData(cartData, item as ICartData, updateType.DECREMENT, purchaseType.CART))}>
+          <RemoveIcon fontSize='small' />
         </Button>
-        <Button disabled>{item.quantity}</Button>
-        <Button aria-label='increase' onClick={() => updateCartData(cartData, item, updateType.INCREMENT, purchaseType.CART)}>
+        <Button disabled>{item && item.quantity}</Button>
+        <Button aria-label='increase' onClick={() => updateCartData(cartData, item as ICartData, updateType.INCREMENT, purchaseType.CART)}>
           <AddIcon fontSize='small' />
         </Button>
       </ButtonGroup>

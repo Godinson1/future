@@ -2,7 +2,7 @@
 
 import React, { createContext, useState, useEffect, useContext } from "react";
 
-const viewportContext = createContext({});
+const ViewportContext = createContext({});
 
 const ViewportProvider = ({ children }: any) => {
   const [width, setWidth] = useState<number>();
@@ -20,11 +20,11 @@ const ViewportProvider = ({ children }: any) => {
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
 
-  return <viewportContext.Provider value={{ width, height }}>{children}</viewportContext.Provider>;
+  return <ViewportContext.Provider value={{ width, height }}>{children}</ViewportContext.Provider>;
 };
 
 const useViewport = () => {
-  const { width, height } = useContext<any>(viewportContext);
+  const { width, height } = useContext<any>(ViewportContext);
   return { width, height };
 };
 

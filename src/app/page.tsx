@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import "react-toastify/dist/ReactToastify.css";
 import { Roboto } from "next/font/google";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -11,7 +12,6 @@ import MobileButton from "@/components/ui/MobileButton";
 import styles from "./page.module.css";
 
 const roboto = Roboto({ subsets: ["latin"], weight: "900" });
-
 export default function Home() {
   const router = useRouter();
 

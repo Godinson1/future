@@ -1,5 +1,9 @@
-import { useState, useMemo, SetStateAction } from "react";
-import { cartData, ICartData } from "@/constants/data";
+import { useState, useMemo } from "react";
+import { toast } from "react-toastify";
+import { ICartData } from "@/constants/data";
+import { useMutation } from "react-query";
+import { getErrorMessage } from "../lib/utils";
+import { placeOrder } from "../api/order/api.order";
 
 export enum updateType {
   INCREMENT = "increment",
@@ -12,19 +16,42 @@ export enum purchaseType {
   CART = "cart",
 }
 
+enum Order {
+  create = "create_order",
+}
+
 export const useCart = () => {
   const [cart, setCart] = useState<ICartData[]>([]);
-  const [items, setItems] = useState<ICartData[]>([]);
+  const [deliveryNote, setDeliveryNote] = useState("");
+  const [shippingAddress, setShippingAddress] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("card");
+  const [deliveryTip, setDeliveryTip] = useState(0);
+  const [subTotal, setSubTotal] = useState(0);
+
+  const { mutate: createOrder, isLoading: createOrderLoading } = useMutation(Order.create, {
+    mutationFn: placeOrder,
+    onSuccess: ({ data }: any) => {
+      toast.success("Order Placed Successfully!");
+    },
+    onError: (error: any) => {
+      toast.error(getErrorMessage(error.response.data.message));
+    },
+  });
+
+  const getTip = (tip: number): number => {
+    return tip == 1 ? 200 : tip === 2 ? 500 : tip == 3 ? 1000 : 0;
+  };
 
   const totalCart = useMemo(() => {
-    return cart.reduce((total, item) => total + item.total, 0);
-  }, [cart]);
+    const cartTotal = cart.reduce((total, item) => total + item.total, 0);
+    setSubTotal(cartTotal);
+    return cartTotal + getTip(deliveryTip);
+  }, [cart, deliveryTip]);
 
-  const addToCart = (item: ICartData) =>
-    setCart((prevState: ICartData[]) => [...prevState, { ...item, total: item.price * item.quantity }]);
+  const addToCart = (item: ICartData) => setCart((prevState: ICartData[]) => [...prevState, { ...item, total: item.price * item.quantity }]);
 
-  const removeFromCart = (item: ICartData) => {
-    const newCartData = cart.filter((data) => data.id !== item.id);
+  const removeFromCart = (item: ICartData): void => {
+    const newCartData = cart.filter((data) => data.productId !== item.productId);
     setCart(newCartData);
   };
 
@@ -34,7 +61,7 @@ export const useCart = () => {
 
   const updateQuantity = (itemsData: ICartData[], item: ICartData, type: updateType, purchase_type: purchaseType) => {
     const newData = itemsData.map((data) => {
-      if (data.id === item.id) {
+      if (data.productId === item.productId) {
         const newQuantity = getQuantity(data.quantity, type);
         return { ...data, quantity: newQuantity, total: newQuantity * data.price };
       }
@@ -44,7 +71,7 @@ export const useCart = () => {
   };
 
   const isCartData = (item: ICartData): boolean => {
-    return cart.find((cartItem: ICartData) => cartItem.id === item.id) !== undefined;
+    return cart.find((cartItem: ICartData) => cartItem.productId === item.productId) !== undefined;
   };
 
   return {
@@ -53,7 +80,19 @@ export const useCart = () => {
     removeFromCart,
     isCartData,
     totalCart,
+    subTotal,
     getQuantity,
     updateQuantity,
+    deliveryNote,
+    setDeliveryNote,
+    shippingAddress,
+    setShippingAddress,
+    paymentMethod,
+    setPaymentMethod,
+    deliveryTip,
+    getTip,
+    setDeliveryTip,
+    createOrder,
+    createOrderLoading,
   };
 };

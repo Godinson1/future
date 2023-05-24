@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import Copyright from "../../components/ui/Copyright";
 import CssBaseline from "@mui/material/CssBaseline";
 import Button from "@mui/material/Button";
@@ -11,17 +13,20 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useAuth } from "@/app/hooks/useAuth";
+import { AppLoader } from "@/app/components/ui/Loader";
 
 const theme = createTheme();
 
 export default function Login() {
+  const { isLoginLoading, loginUser } = useAuth();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const email = data.get("email") as string;
+    const password = data.get("password") as string;
+    loginUser({ email, password });
   };
 
   return (
@@ -45,27 +50,13 @@ export default function Login() {
                 <TextField required fullWidth id='email' label='Email Address' name='email' autoComplete='email' />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name='password'
-                  label='Password'
-                  type='password'
-                  id='password'
-                  autoComplete='new-password'
-                />
+                <TextField required fullWidth name='password' label='Password' type='password' id='password' autoComplete='new-password' />
               </Grid>
             </Grid>
-            <Button
-              style={{ backgroundColor: "#7c66da", height: 50 }}
-              type='submit'
-              fullWidth
-              variant='contained'
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Login
+            <Button disabled={isLoginLoading} style={{ backgroundColor: "#7c66da", height: 50 }} type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+              {isLoginLoading ? <AppLoader /> : "Login"}
             </Button>
-            <Button style={{ backgroundColor: "#7c66da", height: 50 }} type='submit' fullWidth variant='contained' sx={{ mb: 2 }}>
+            <Button style={{ backgroundColor: "#7c66da", height: 50 }} fullWidth variant='contained' sx={{ mb: 2 }}>
               Sign In with Google
             </Button>
             <Grid container justifyContent='center'>

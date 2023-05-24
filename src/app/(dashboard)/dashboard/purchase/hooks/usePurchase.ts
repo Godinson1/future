@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import { ICartData, cartData } from "@/app/constants/data";
 import { useStateContext } from "@/app/contexts/ContextProvider";
 import { useViewport } from "@/app/hooks/useViewPort";
+import { useCartContext } from "@/app/contexts/CartContextProvider";
 
 export const usePurchase = () => {
   const [items, setItems] = useState<ICartData[]>([]);
   const [search, setSearch] = useState<string>("");
   const [filteredItems, setFilteredItems] = useState<ICartData[]>([]);
-  const { addToCart, isCartData, currentColor } = useStateContext();
+  const { isCartData, addToCart } = useCartContext();
+  const { currentColor } = useStateContext();
   const { width } = useViewport();
 
   const inputWidth = width < 768 ? "100%" : 250;
