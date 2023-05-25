@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import Divider from "@mui/material/Divider";
 import ButtonIcon from "@/app/(dashboard)/components/ButtonIcon";
@@ -14,18 +14,19 @@ import CartItems from "./CartItems";
 import { useStateContext } from "@/app/contexts/ContextProvider";
 import { formatter } from "@/app/lib/utils";
 import { useAuth } from "@/app/hooks/useAuth";
+import { tipMapper } from "@/app/hooks/useCart";
 
 const PurchaseCart = () => {
   const { user } = useAuth();
   const { currentColor } = useStateContext();
-  const { cart, updateQuantity, removeFromCart, totalCart, subTotal, deliveryTip, setDeliveryTip, getTip, paymentMethod, setPaymentMethod, deliveryNote, setDeliveryNote, shippingAddress, setShippingAddress, createOrder, createOrderLoading } =
+  const { cart, updateQuantity, removeFromCart, totalCart, subTotal, deliveryTip, setDeliveryTip, paymentMethod, setPaymentMethod, deliveryNote, setDeliveryNote, shippingAddress, setShippingAddress, createOrder, createOrderLoading } =
     useCartContext();
 
   const handlePlaceOrder = (cartItems: ICartData[]) => {
     const cartOrderRequest: CartOrderRequest = {
       userId: user.id,
       orderLineItems: cartItems,
-      deliveryInfo: { deliveryNote, pickUpAddress: "hqtrs", shippingAddress, tipAmount: getTip(deliveryTip) },
+      deliveryInfo: { deliveryNote, pickUpAddress: "hqtrs", shippingAddress, tipAmount: tipMapper[deliveryTip] },
       paymentInfo: { type: paymentMethod },
       subTotal,
       total: totalCart,
@@ -54,7 +55,7 @@ const PurchaseCart = () => {
               </div>
               <div className='flex justify-between items-center mb-3'>
                 <p className='text-gray-500'>Tips</p>
-                <p className='font-semibold'>{formatter.format(getTip(deliveryTip))}</p>
+                <p className='font-semibold'>{formatter.format(tipMapper[deliveryTip])}</p>
               </div>
               <Divider />
               <div className='flex justify-between items-center mt-3 mb-3'>

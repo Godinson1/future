@@ -24,10 +24,7 @@ const DashbaordLayout = ({ children }: { children: ReactNode }) => {
           )}
           <div className={`${styles.dashboard_main} ${activeMenu ? styles.dashboard_main_active : styles.dashboard_main_full}`}>
             <DashboardNavbar />
-            <div className={styles.dashboard_child}>
-              <div className={styles.dashboard_child_top}></div>
-              <div className={styles.dashboard_child_content}>{children}</div>
-            </div>
+            <div className={styles.dashboard_child}>{children}</div>
             <Footer />
           </div>
         </div>

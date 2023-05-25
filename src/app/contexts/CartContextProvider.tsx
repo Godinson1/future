@@ -22,9 +22,9 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
     setPaymentMethod,
     deliveryTip,
     setDeliveryTip,
-    getTip,
     createOrder,
     createOrderLoading,
+    activeSteps,
   } = useCart();
 
   return (
@@ -45,9 +45,9 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
         setPaymentMethod,
         deliveryTip,
         setDeliveryTip,
-        getTip,
         createOrder,
         createOrderLoading,
+        activeSteps,
         cartLength: cart && cart.length,
       }}
     >

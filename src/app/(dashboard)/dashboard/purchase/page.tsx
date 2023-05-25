@@ -2,16 +2,24 @@
 
 import React from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { ICartData, cartData } from "@/constants/data";
 import styles from "@/styles/dashboard.module.css";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import ProductBase from "../../components/ProductBase";
 import { usePurchase } from "./hooks/usePurchase";
+import { useCartContext } from "@/app/contexts/CartContextProvider";
+
+const PurchaseOrderSteppers = dynamic(() => import("./components/PurchaseStepper"), {
+  ssr: false,
+});
 
 const Page = () => {
-  const { addToCart, isCartData, currentColor, items, setSearch, getCategories, filterByCategory, filteredItems, inputWidth } = usePurchase();
+  const { activeSteps } = useCartContext();
+  const { addToCart, isCartData, currentColor, setSearch, getCategories, filterByCategory, filteredItems, inputWidth } = usePurchase();
 
+  const currentOrder = false;
   const getFilteredList = (filteredList: ICartData[]) => {
     return filteredList.length < 1 ? (
       <div className='w-full text-center'>
@@ -38,17 +46,20 @@ const Page = () => {
 
   return (
     <div className={styles.dashboard}>
-      <div className='flex flex-wrap items-center justify-start gap-5'>
-        <Autocomplete
-          disablePortal
-          onChange={(event: any, newValue: string | null) => filterByCategory(newValue as string)}
-          options={getCategories()}
-          sx={{ width: inputWidth }}
-          renderInput={(params) => <TextField {...params} size='small' label='Search by Categories' />}
-        />
-        <TextField onChange={(e: any) => setSearch(e.target.value)} label='Search by Name' sx={{ width: inputWidth }} variant='outlined' size='small' />
+      <div className={styles.dashboard_child_top}>
+        {activeSteps ? <PurchaseOrderSteppers activeSteps={activeSteps} /> : "No Active Order!"}
+        <div className={styles.dashboard_purchase_option}>
+          <Autocomplete
+            disablePortal
+            onChange={(event: any, newValue: string | null) => filterByCategory(newValue as string)}
+            options={getCategories()}
+            sx={{ width: inputWidth }}
+            renderInput={(params) => <TextField variant='standard' {...params} size='small' label='Search by Categories' />}
+          />
+          <TextField onChange={(e: any) => setSearch(e.target.value)} label='Search by Name' sx={{ width: inputWidth }} variant='standard' size='small' />
+        </div>
       </div>
-      <div className='flex flex-wrap gap-5'>{cartData ? getFilteredList(filteredItems) : ""}</div>
+      <div className='flex flex-wrap gap-5 mt-5'>{cartData ? getFilteredList(filteredItems) : ""}</div>
     </div>
   );
 };

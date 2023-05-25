@@ -1,9 +1,12 @@
 import { useState, useMemo } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 import { ICartData } from "@/constants/data";
 import { useMutation } from "react-query";
 import { getErrorMessage } from "../lib/utils";
 import { placeOrder } from "../api/order/api.order";
+import { usePayment } from "./usePayment";
+import { useStateContext } from "../contexts/ContextProvider";
 
 export enum updateType {
   INCREMENT = "increment",
@@ -20,33 +23,50 @@ enum Order {
   create = "create_order",
 }
 
+export const tipMapper: { [index: string]: number } = {
+  0: 0,
+  1: 200,
+  2: 500,
+  3: 1000,
+};
+
 export const useCart = () => {
   const [cart, setCart] = useState<ICartData[]>([]);
-  const [deliveryNote, setDeliveryNote] = useState("");
-  const [shippingAddress, setShippingAddress] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("card");
-  const [deliveryTip, setDeliveryTip] = useState(0);
-  const [subTotal, setSubTotal] = useState(0);
+  const [deliveryNote, setDeliveryNote] = useState<string>("");
+  const [shippingAddress, setShippingAddress] = useState<string>("");
+  const [paymentMethod, setPaymentMethod] = useState<string>("card");
+  const [deliveryTip, setDeliveryTip] = useState<number>(0);
+  const [subTotal, setSubTotal] = useState<number>(2);
+  const [activeSteps, setActiveSteps] = useState<null | number>(null);
+  const { setIsClicked, initialState } = useStateContext();
+
+  const totalCart = useMemo(() => {
+    const cartTotal = cart.reduce((total, item) => total + item.total, 0);
+    setSubTotal(cartTotal);
+    return cartTotal + tipMapper[deliveryTip];
+  }, [cart, deliveryTip]);
+  const { handlePayment, closePaymentModal } = usePayment(totalCart);
+  const router = useRouter();
 
   const { mutate: createOrder, isLoading: createOrderLoading } = useMutation(Order.create, {
     mutationFn: placeOrder,
     onSuccess: ({ data }: any) => {
       toast.success("Order Placed Successfully!");
+      handlePayment({
+        callback: (response) => {
+          console.log(response);
+          closePaymentModal();
+          setIsClicked(initialState);
+          setActiveSteps(1);
+          setCart([]);
+        },
+        onClose: () => router.push("/purchase"),
+      });
     },
     onError: (error: any) => {
       toast.error(getErrorMessage(error.response.data.message));
     },
   });
-
-  const getTip = (tip: number): number => {
-    return tip == 1 ? 200 : tip === 2 ? 500 : tip == 3 ? 1000 : 0;
-  };
-
-  const totalCart = useMemo(() => {
-    const cartTotal = cart.reduce((total, item) => total + item.total, 0);
-    setSubTotal(cartTotal);
-    return cartTotal + getTip(deliveryTip);
-  }, [cart, deliveryTip]);
 
   const addToCart = (item: ICartData) => setCart((prevState: ICartData[]) => [...prevState, { ...item, total: item.price * item.quantity }]);
 
@@ -90,9 +110,9 @@ export const useCart = () => {
     paymentMethod,
     setPaymentMethod,
     deliveryTip,
-    getTip,
     setDeliveryTip,
     createOrder,
     createOrderLoading,
+    activeSteps,
   };
 };
