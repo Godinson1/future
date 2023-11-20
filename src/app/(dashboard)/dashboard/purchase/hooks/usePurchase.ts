@@ -1,47 +1,46 @@
 import { useState, useEffect } from "react";
 
-import { ICartData, cartData } from "@/app/constants/data";
+import { ICartData } from "@/app/constants/data";
 import { useStateContext } from "@/app/contexts/ContextProvider";
 import { useViewport } from "@/app/hooks/useViewPort";
 import { useCartContext } from "@/app/contexts/CartContextProvider";
+import { useQuery } from "react-query";
+import { getProducts } from "@/app/api/inventory/api.product";
 
 export const usePurchase = () => {
-  const [items, setItems] = useState<ICartData[]>([]);
   const [search, setSearch] = useState<string>("");
   const [filteredItems, setFilteredItems] = useState<ICartData[]>([]);
   const { isCartData, addToCart } = useCartContext();
   const { currentColor } = useStateContext();
   const { width } = useViewport();
+  const { data: products, isLoading: productsLoading } = useQuery("products", getProducts);
+  const productItems = products?.data;
 
   const inputWidth = width < 768 ? "100%" : 250;
 
-  useEffect(() => setItems(cartData), []);
-
   useEffect(() => {
-    const filteredData = items.filter((item) => {
+    const filteredData = (productItems || []).filter((item: ICartData) => {
       return search.length > 2 ? item.name.toLowerCase().includes(search.toLowerCase()) : item;
     });
     setFilteredItems(filteredData);
-  }, [search, items]);
+  }, [search, productItems]);
 
-  const getCategories = () => {
-    return Array.from(new Set(items.map((item) => item.category)));
-  };
+  const getCategories = (): string[] => Array.from(new Set((productItems || []).map((item: ICartData) => item.category)));
 
   const filterByCategory = (category: string) => {
-    return !category ? setItems(cartData) : setItems(items.filter((item) => item.category.toLowerCase() === category.toLowerCase()));
+    return !category ? setFilteredItems(productItems) : setFilteredItems(productItems.filter((item: ICartData) => item.category.toLowerCase() === category.toLowerCase()));
   };
 
   return {
     addToCart,
     isCartData,
-    items,
     getCategories,
     currentColor,
-    setItems,
     setSearch,
     filteredItems,
     inputWidth,
     filterByCategory,
+    productItems,
+    productsLoading,
   };
 };

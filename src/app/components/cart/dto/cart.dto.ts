@@ -13,6 +13,23 @@ export interface CartOrderRequest {
   total: number;
 }
 
+export interface InventoryRequest {
+  currentPrice: number;
+  productName: string;
+  productId: string;
+  quantityPurchased: number;
+}
+
+export interface IProductInput {
+  name: string;
+  category: string;
+  manufacturer: string;
+  productPhotoUrl: string;
+  price: number;
+  description: string;
+  initialQuantityPurchased: number;
+}
+
 export interface DeliveryInfo {
   pickUpAddress: string;
   shippingAddress: string;

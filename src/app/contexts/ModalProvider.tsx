@@ -11,7 +11,7 @@ import { useStateContext } from "@/app/contexts/ContextProvider";
 interface ModalProviderProps {
   children: React.ReactNode;
   title?: string;
-  type?: "add" | "update" | "upload" | "send" | "buy";
+  type?: "add" | "update" | "upload" | "send" | "buy" | "top up";
   show?: boolean;
   open: boolean;
 }

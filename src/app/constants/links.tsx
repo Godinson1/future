@@ -11,7 +11,7 @@ export const SIDEBAR_LINKS = [
       {
         name: "overview",
         icon: <FiHome />,
-        path: "/dashboard/overview",
+        path: "/dashboard",
       },
     ],
   },

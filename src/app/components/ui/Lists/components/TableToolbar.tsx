@@ -27,6 +27,7 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     add: `add_${pageTitle}`,
     update: `update_${pageTitle}`,
     upload: `upload_${pageTitle}`,
+    product: "add_product",
   };
 
   const { numSelected } = props;
@@ -53,6 +54,11 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
         )}
         {numSelected > 0 ? (
           <div className='flex'>
+            <Tooltip title='Add Inventory'>
+              <IconButton onClick={() => handleModalPageClick(actionMapper["add"])}>
+                <AddIcon />
+              </IconButton>
+            </Tooltip>
             <Tooltip title='Update'>
               <IconButton>
                 <Edit />
@@ -71,8 +77,8 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
           </div>
         ) : (
           <div className='flex'>
-            <Tooltip title='Add'>
-              <IconButton onClick={() => handleModalPageClick(actionMapper["add"])}>
+            <Tooltip title='Add Product'>
+              <IconButton onClick={() => handleModalPageClick(actionMapper["product"])}>
                 <AddIcon />
               </IconButton>
             </Tooltip>

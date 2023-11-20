@@ -38,7 +38,7 @@ export const useTable = (rows: any[]) => {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
     }
-
+    console.log("selected", newSelected);
     setSelected(newSelected);
   };
 

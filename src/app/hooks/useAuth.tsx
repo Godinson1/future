@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery } from "react-query";
 import { getUser } from "../api/user/api.user";

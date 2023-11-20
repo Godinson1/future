@@ -11,6 +11,7 @@ const initialState = {
 
 const initialModalState = {
   add_inventory: false,
+  add_product: false,
   update_inventory: false,
   upload_inventory: false,
   fund: false,

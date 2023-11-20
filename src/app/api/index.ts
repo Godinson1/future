@@ -17,6 +17,16 @@ export const userApi = axios.create({
 });
 
 export const orderApi = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_ORDER_BASE_API,
+  baseURL: `${process.env.NEXT_PUBLIC_ORDER_BASE_API}/order`,
+  ...commonConfig,
+});
+
+export const inventoryApi = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_ORDER_BASE_API}/inventory`,
+  ...commonConfig,
+});
+
+export const productApi = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_ORDER_BASE_API}/products`,
   ...commonConfig,
 });

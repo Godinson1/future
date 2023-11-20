@@ -17,66 +17,43 @@ interface TableListProps {
   title: string;
   data: any[];
   headerCells: readonly any[];
+  handleSelectedInput: (row: any) => void;
 }
 
-const TableList = ({ title, headerCells, data }: TableListProps) => {
-  const {
-    handleClick,
-    rows,
-    page,
-    selected,
-    rowsPerPage,
-    order,
-    orderBy,
-    handleSelectAllClick,
-    handleRequestSort,
-    handleChangePage,
-    handleChangeRowsPerPage,
-    isSelected,
-    emptyRows,
-  } = useTable(data);
+const TableList = ({ title, headerCells, data, handleSelectedInput }: TableListProps) => {
+  const { handleClick, rows, page, selected, rowsPerPage, order, orderBy, handleSelectAllClick, handleRequestSort, handleChangePage, handleChangeRowsPerPage, isSelected, emptyRows } = useTable(data);
 
-  const stringColumns = ["name", "image"];
+  const stringColumns = ["productName", "productId", "status"];
+  const handleRowClick = (event: React.MouseEvent<unknown>, row: any) => {
+    handleClick(event, row.productName);
+    handleSelectedInput(row);
+  };
 
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component='div'
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        <TablePagination rowsPerPageOptions={[5, 10, 25]} component='div' count={rows.length} rowsPerPage={rowsPerPage} page={page} onPageChange={handleChangePage} onRowsPerPageChange={handleChangeRowsPerPage} />
         <EnhancedTableToolbar title={title} numSelected={selected.length} />
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby='tableTitle' size={"medium"}>
-            <EnhancedTableHead
-              headerCells={headerCells}
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
+            <EnhancedTableHead headerCells={headerCells} numSelected={selected.length} order={order} orderBy={orderBy} onSelectAllClick={handleSelectAllClick} onRequestSort={handleRequestSort} rowCount={rows.length} />
             <TableBody>
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row: any, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.productName);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) => {
+                        handleClick(event, row.productName), handleSelectedInput(row);
+                      }}
                       role='checkbox'
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.productName}
                       selected={isItemSelected}
                       sx={{ cursor: "pointer" }}
                     >

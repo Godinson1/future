@@ -8,7 +8,6 @@ import { RiNotification3Line } from "react-icons/ri";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Tooltip from "@mui/material/Tooltip";
 import Badge from "@mui/material/Badge";
-import avatar from "@/assets/avatar.jpg";
 import { useStateContext } from "@/app/contexts/ContextProvider";
 import Profile from "@/components/Profile";
 import Notification from "@/components/Notification";
@@ -20,6 +19,7 @@ import usePageTitle from "@/app/hooks/usePageTitle";
 
 import styles from "@/styles/dashboard.module.css";
 import { useCartContext } from "@/app/contexts/CartContextProvider";
+import { useAuth } from "@/app/hooks/useAuth";
 
 interface NavButtonProps {
   title: string;
@@ -41,6 +41,7 @@ const DashboardNavbar = () => {
   const { width } = useViewport();
   const { pageTitle } = usePageTitle();
   const { cartLength } = useCartContext();
+  const { user } = useAuth();
   const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked } = useStateContext();
 
   useEffect(() => {
@@ -68,7 +69,7 @@ const DashboardNavbar = () => {
         <NavButton title='Notifications' dotColor='rgb(254, 201, 15)' customFunc={() => handleClick("notification")} icon={<RiNotification3Line color={currentColor} />} />
         <Tooltip title='Profile' placement='bottom'>
           <div className='flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg' onClick={() => handleClick("profile")}>
-            <Image className='rounded-full w-8 h-8' src={avatar} alt='user-profile' />
+            <Image className='rounded-full w-8 h-8' src={user?.profilePhoto} width={8} height={8} alt='user-profile' />
             <MdKeyboardArrowDown className='text-gray-400 text-14' />
           </div>
         </Tooltip>

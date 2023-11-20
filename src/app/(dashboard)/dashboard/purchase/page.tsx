@@ -3,13 +3,15 @@
 import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { ICartData, cartData } from "@/constants/data";
+import { ICartData } from "@/constants/data";
 import styles from "@/styles/dashboard.module.css";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import ProductBase from "../../components/ProductBase";
 import { usePurchase } from "./hooks/usePurchase";
 import { useCartContext } from "@/app/contexts/CartContextProvider";
+import product4 from "@/assets/product4.jpg";
+import { AppLoader } from "@/app/components/ui/Loader";
 
 const PurchaseOrderSteppers = dynamic(() => import("./components/PurchaseStepper"), {
   ssr: false,
@@ -17,9 +19,10 @@ const PurchaseOrderSteppers = dynamic(() => import("./components/PurchaseStepper
 
 const Page = () => {
   const { activeSteps } = useCartContext();
-  const { addToCart, isCartData, currentColor, setSearch, getCategories, filterByCategory, filteredItems, inputWidth } = usePurchase();
+  const { addToCart, isCartData, currentColor, setSearch, getCategories, filterByCategory, filteredItems, inputWidth, productItems, productsLoading } = usePurchase();
 
-  const currentOrder = false;
+  console.log("prod", productItems);
+
   const getFilteredList = (filteredList: ICartData[]) => {
     return filteredList.length < 1 ? (
       <div className='w-full text-center'>
@@ -28,7 +31,7 @@ const Page = () => {
     ) : (
       filteredList?.map((item: ICartData, index: number) => (
         <div key={index} className={styles.purchase_container}>
-          <Image className={styles.purchase_image} src={item.image} alt='item-order' />
+          <Image className={styles.purchase_image} src={product4} alt='item-order' />
           <div className={styles.purchase_content}>
             <div>
               <div className='flex justify-between items-center'>
@@ -59,7 +62,7 @@ const Page = () => {
           <TextField onChange={(e: any) => setSearch(e.target.value)} label='Search by Name' sx={{ width: inputWidth }} variant='standard' size='small' />
         </div>
       </div>
-      <div className='flex flex-wrap gap-5 mt-5'>{cartData ? getFilteredList(filteredItems) : ""}</div>
+      <div className='flex flex-wrap gap-5 mt-5'>{productsLoading ? <AppLoader /> : getFilteredList(filteredItems)}</div>
     </div>
   );
 };

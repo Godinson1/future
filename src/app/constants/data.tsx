@@ -13,12 +13,22 @@ import product4 from "@/assets/product4.jpg";
 import { StaticImageData } from "next/image";
 
 export interface ICartData {
-  productId: string;
+  _id: string;
   name: string;
   image: StaticImageData | string;
   price: number;
   category: string;
   quantity: number;
+  total: number;
+}
+
+export interface ICartData {
+  productId: string;
+  name: string;
+  image: StaticImageData | string;
+  price: number;
+  category: string;
+  initialQuantityPurchased: number;
   total: number;
 }
 
@@ -73,50 +83,50 @@ export const chatData = [
   },
 ];
 
-export const cartData: ICartData[] = [
-  {
-    productId: "646ddb9d0f6f319e20988e6d",
-    image: product6,
-    name: "Supreme Fresh Tomato",
-    category: "Vegetable",
-    price: 300,
-    quantity: 1,
-    total: 0,
-  },
-  {
-    productId: "646ddb9d0f6f319e20988e6e",
-    image: product8,
-    name: "Yummy Candy",
-    category: "Sweet",
-    price: 500,
-    quantity: 1,
-    total: 0,
-  },
-  {
-    productId: "646ddb9d0f6f319e20988e6f",
-    image: product7,
-    name: "Cold Stone Ice Cream",
-    category: "Desert",
-    price: 300,
-    quantity: 1,
-    total: 0,
-  },
-  {
-    productId: "646ddb9d0f6f319e20988e70",
-    image: product5,
-    name: "Pizza",
-    category: "Snack",
-    price: 1200,
-    quantity: 1,
-    total: 0,
-  },
-  {
-    productId: "646ddb9d0f6f319e20988e71",
-    image: product4,
-    name: "Hollandia",
-    category: "Drink",
-    price: 300,
-    quantity: 1,
-    total: 0,
-  },
-];
+// export const cartData: ICartData[] = [
+//   {
+//     productId: "646ddb9d0f6f319e20988e6d",
+//     image: product6,
+//     name: "Supreme Fresh Tomato",
+//     category: "Vegetable",
+//     price: 300,
+//     quantity: 1,
+//     total: 0,
+//   },
+//   {
+//     productId: "646ddb9d0f6f319e20988e6e",
+//     image: product8,
+//     name: "Yummy Candy",
+//     category: "Sweet",
+//     price: 500,
+//     quantity: 1,
+//     total: 0,
+//   },
+//   {
+//     productId: "646ddb9d0f6f319e20988e6f",
+//     image: product7,
+//     name: "Cold Stone Ice Cream",
+//     category: "Desert",
+//     price: 300,
+//     quantity: 1,
+//     total: 0,
+//   },
+//   {
+//     productId: "646ddb9d0f6f319e20988e70",
+//     image: product5,
+//     name: "Pizza",
+//     category: "Snack",
+//     price: 1200,
+//     quantity: 1,
+//     total: 0,
+//   },
+//   {
+//     productId: "646ddb9d0f6f319e20988e71",
+//     image: product4,
+//     name: "Hollandia",
+//     category: "Drink",
+//     price: 300,
+//     quantity: 1,
+//     total: 0,
+//   },
+// ];
