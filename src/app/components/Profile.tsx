@@ -27,7 +27,7 @@ const Profile = () => {
       <div className='flex gap-5 items-center mt-6 border-color border-b-1 pb-6'>
         {/* {!profilePhoto ? <Image className='rounded-full h-24 w-24' src={avatar} alt='user-profile' /> : <div className='flex items-center justify-center rounded-full h-24 w-24 font-semibold text-xl'>{getInitials()}</div>} */}
         <div className={styles.container}>
-          <Image className={`rounded-full h-24 w-24 ${styles.image}`} src={prevImageUrl || profilePhoto} height={100} width={100} alt='user-profile' />
+          {profilePhoto && <Image className={`rounded-full h-24 w-24 ${styles.image}`} src={prevImageUrl || profilePhoto} height={100} width={100} alt='user-profile' />}
           <div className={styles.middle}>
             <label htmlFor='file'>
               <div className='upload-icon'>
