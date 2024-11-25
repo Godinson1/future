@@ -1,13 +1,13 @@
 import React from "react";
 
-import { useStateContext } from "@/app/contexts/ContextProvider";
+import { useStateContext } from "src/app/contexts/ContextProvider";
 import Button from "@mui/material/Button";
 import { useInventory } from "../hooks/useInventory";
-import { AppLoader } from "@/app/components/ui/Loader";
-import AccordionForm from "@/app/components/ui/form/AccordionForm";
-import FutureButton from "@/app/(dashboard)/components/FutureButton";
-import TextInput, { InputRow } from "@/app/components/ui/form/TextInput";
-import FileUploader from "@/app/components/ui/form/FileUploader";
+import { AppLoader } from "src/app/components/ui/Loader";
+import AccordionForm from "src/app/components/ui/form/AccordionForm";
+import FutureButton from "src/app/(dashboard)/components/FutureButton";
+import TextInput, { InputRow } from "src/app/components/ui/form/TextInput";
+import FileUploader from "src/app/components/ui/form/FileUploader";
 
 const AddProduct = () => {
   const { currentColor } = useStateContext();

@@ -1,5 +1,5 @@
 import React from "react";
-import { AppLoader } from "@/app/components/ui/Loader";
+import { AppLoader } from "src/app/components/ui/Loader";
 import Button from "@mui/material/Button";
 
 interface IFutureButton {

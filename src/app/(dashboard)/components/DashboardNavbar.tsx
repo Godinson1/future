@@ -8,18 +8,18 @@ import { RiNotification3Line } from "react-icons/ri";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Tooltip from "@mui/material/Tooltip";
 import Badge from "@mui/material/Badge";
-import { useStateContext } from "@/app/contexts/ContextProvider";
-import Profile from "@/components/Profile";
-import Notification from "@/components/Notification";
-import Messages from "@/components/Messages";
-import PurchaseCart from "@/app/components/cart/PurchaseCart";
-import { useViewport } from "@/hooks/useViewPort";
+import { useStateContext } from "src/app/contexts/ContextProvider";
+import Profile from "src/app/components/Profile";
+import Notification from "src/app/components/Notification";
+import Messages from "src/app/components/Messages";
+import PurchaseCart from "src/app/components/cart/PurchaseCart";
+import { useViewport } from "src/app/hooks/useViewPort";
 import IconButton from "@mui/material/IconButton/IconButton";
-import usePageTitle from "@/app/hooks/usePageTitle";
+import usePageTitle from "src/app/hooks/usePageTitle";
 
 import styles from "@/styles/dashboard.module.css";
-import { useCartContext } from "@/app/contexts/CartContextProvider";
-import { useAuth } from "@/app/hooks/useAuth";
+import { useCartContext } from "src/app/contexts/CartContextProvider";
+import { useAuth } from "src/app/hooks/useAuth";
 
 interface NavButtonProps {
   title: string;

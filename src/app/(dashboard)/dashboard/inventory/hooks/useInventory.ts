@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
-import { getInventories, topUpInventory } from "@/app/api/inventory/api.inventory";
-import { IProductInput } from "@/app/components/cart/dto/cart.dto";
-import { addProduct } from "@/app/api/inventory/api.product";
-import { getErrorMessage } from "@/app/lib/utils";
+import { getInventories, topUpInventory } from "src/app/api/inventory/api.inventory";
+import { IProductInput } from "src/app/components/cart/dto/cart.dto";
+import { addProduct } from "src/app/api/inventory/api.product";
+import { getErrorMessage } from "src/app/lib/utils";
 import { IInventory } from "../constants";
-import useAddForm from "@/app/hooks/forms/useAddForm";
+import useAddForm from "src/app/hooks/forms/useAddForm";
 import cloneDeep from "lodash.clonedeep";
-import { getFileName, getS3Url } from "@/app/shared/utils";
+import { getFileName, getS3Url } from "src/app/shared/utils";
 
 enum Product {
   create = "create_product",

@@ -1,5 +1,5 @@
 import React from "react";
-import { IData } from "@/constants/list";
+import { IData } from "src/app/constants/list";
 
 type Order = "asc" | "desc";
 

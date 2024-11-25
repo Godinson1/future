@@ -11,8 +11,8 @@ import FileUpload from "@mui/icons-material/FileUpload";
 import FileDownload from "@mui/icons-material/FileDownload";
 import Edit from "@mui/icons-material/Edit";
 import Archive from "@mui/icons-material/Archive";
-import { useStateContext } from "@/app/contexts/ContextProvider";
-import usePageTitle from "@/app/hooks/usePageTitle";
+import { useStateContext } from "src/app/contexts/ContextProvider";
+import usePageTitle from "src/app/hooks/usePageTitle";
 
 interface EnhancedTableToolbarProps {
   numSelected: number;

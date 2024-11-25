@@ -2,16 +2,17 @@
 
 import { useRouter } from "next/navigation";
 import "react-toastify/dist/ReactToastify.css";
-import { Roboto } from "next/font/google";
+import { Roboto, Poppins } from "next/font/google";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Button from "@/components/ui/Button";
-import Navbar from "@/components/ui/Navbar";
-import MobileButton from "@/components/ui/MobileButton";
+import Button from "src/app/components/ui/Button";
+import Navbar from "src/app/components/ui/Navbar";
 
 import styles from "./page.module.css";
 
 const roboto = Roboto({ subsets: ["latin"], weight: "900" });
+const poppins = Poppins({ subsets: ["latin"], weight: "900" });
+
 export default function Home() {
   const router = useRouter();
 
@@ -22,14 +23,13 @@ export default function Home() {
         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
           <h2 className={`${roboto.className} ${styles.text_header}`}>Creating a future with seamless possibilities.</h2>
           <Container maxWidth='sm'>
-            <p className={`${roboto.className} ${styles.header_base}`}>Buy, pay, chat and manage activities all in one place.</p>
+            <p className={`${poppins.className} ${styles.header_base}`}>Buy, pay, chat and manage activities all in one place.</p>
           </Container>
         </Box>
         <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 3 }}>
           <Button onClick={() => router.push("/register")} size='large'>
             Create an account
           </Button>
-          <MobileButton />
         </Box>
       </Container>
     </main>

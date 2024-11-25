@@ -1,17 +1,20 @@
 "use client";
 
 import React from "react";
-import { Roboto } from "next/font/google";
-import styles from "./styles/payments.module.css";
+import { useStateContext } from "src/app/contexts/ContextProvider";
+
 import { BsCashCoin } from "react-icons/bs";
-import { ModalProvider } from "@/app/contexts/ModalProvider";
+import { ModalProvider } from "src/app/contexts/ModalProvider";
+
 import Fund from "./components/Fund";
 import Send from "./components/Send";
-import { useStateContext } from "@/app/contexts/ContextProvider";
 import Buy from "./components/Buy";
 import Settings from "./components/Settings";
+import PaymentTotalCard from "./components/PaymentTotalCard";
+import PaymentActionCard from "./components/PaymentActionCard";
+import RecentActivityCard from "./components/RecentActivityCard";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["300"] });
+import styles from "./styles/payments.module.css";
 
 const Page = () => {
   const { isModalPageClicked, handleModalPageClick } = useStateContext();
@@ -19,65 +22,32 @@ const Page = () => {
   return (
     <div>
       <div className={styles.payment_container}>
-        <div className={styles.payment_card}>
-          <div className='flex justify-between items-center w-full'>
-            <span>Main Balance</span>
-            <div className={`text-sm text-slate-700 ${styles.active}`}>Active</div>
-          </div>
-          <div>
-            <p className='font-bold text-4xl'>$895.30k</p>
-          </div>
-        </div>
-        <div className={styles.payment_card}>
-          <span>Loan</span>
-          <p className='font-bold text-4xl'>$895.30k</p>
-        </div>
-        <div className={styles.payment_card}>
-          <span>Investment</span>
-          <p className='font-bold text-4xl'>$895.30k</p>
-        </div>
-        <div className={styles.payment_card}>
-          <span>Bitcoin</span>
-          <p className='font-bold text-4xl'>$895.30k</p>
-        </div>
+        <PaymentTotalCard title='Main Balance' balance='895.30' currency='usd' status_flag active />
+        <PaymentTotalCard title='Loan' balance='895.30' currency='usd' />
+        <PaymentTotalCard title='Investment' balance='895.30' currency='usd' />
+        <PaymentTotalCard title='Bitcoin' balance='895.30' currency='btc' />
       </div>
       <div className='mt-5'>
         <h1 className='font-bold text-xl'>Quick Actions</h1>
         <div className={`text-sm ${styles.payment_actions_container}`}>
-          <div onClick={() => handleModalPageClick("fund")} className={`${styles.payment_card_1} ${styles.payment_actions}`}>
-            <BsCashCoin />
-            Fund
-          </div>
-          <div onClick={() => handleModalPageClick("send")} className={styles.payment_actions}>
-            <BsCashCoin />
-            Send
-          </div>
-          <div onClick={() => handleModalPageClick("buy")} className={styles.payment_actions}>
-            <BsCashCoin />
-            Buy Airtime
-          </div>
-          <div onClick={() => handleModalPageClick("buy")} className={styles.payment_actions}>
-            <BsCashCoin />
-            Buy Data
-          </div>
-          <div onClick={() => handleModalPageClick("buy")} className={styles.payment_actions}>
-            <BsCashCoin />
-            Pay Bills
-          </div>
-          <div onClick={() => handleModalPageClick("payment_settings")} className={styles.payment_actions}>
-            <BsCashCoin />
-            Settings
-          </div>
+          <PaymentActionCard action='Fund' handleModalPageClick={handleModalPageClick} icon={<BsCashCoin />} />
+          <PaymentActionCard action='Send' handleModalPageClick={handleModalPageClick} icon={<BsCashCoin />} />
+          <PaymentActionCard action='Buy Airtime' handleModalPageClick={handleModalPageClick} icon={<BsCashCoin />} />
+          <PaymentActionCard action='Buy Data' handleModalPageClick={handleModalPageClick} icon={<BsCashCoin />} />
+          <PaymentActionCard action='Pay Bills' handleModalPageClick={handleModalPageClick} icon={<BsCashCoin />} />
+          <PaymentActionCard action='Settings' handleModalPageClick={handleModalPageClick} icon={<BsCashCoin />} />
         </div>
       </div>
       <div className={styles.payment_base}>
         <div className={styles.payment_transactions}>
           <div className='flex justify-between items-center'>
-            <p className='font-bold text-sm'>Transactions</p>
+            <p className='font-bold text-sm'>Recent Activities</p>
             <span>See All</span>
           </div>
+          <RecentActivityCard amount='3000' status='success' type='send' created_at='2024-11-03 15:90' />
+          <RecentActivityCard amount='3000' status='pending' type='send' created_at='2024-11-03 15:90' />
+          <RecentActivityCard amount='3000' status='failed' type='send' created_at='2024-11-03 15:90' />
         </div>
-        <div className={styles.payment_transactions}>Recommendations</div>
       </div>
       <ModalProvider type='add' title='Fund' open={isModalPageClicked.fund}>
         <Fund />

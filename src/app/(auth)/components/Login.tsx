@@ -13,8 +13,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useAuth } from "@/app/hooks/useAuth";
-import { AppLoader } from "@/app/components/ui/Loader";
+import { useAuth } from "src/app/hooks/useAuth";
+import { AppLoader } from "src/app/components/ui/Loader";
 
 const theme = createTheme();
 

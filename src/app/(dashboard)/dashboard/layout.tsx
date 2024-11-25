@@ -1,12 +1,12 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import { AuthGuard } from "@/app/hooks/useAuth";
-import { CartContextProvider } from "@/app/contexts/CartContextProvider";
-import Sidebar from "@/app/(dashboard)/components/Sidebar";
-import { useStateContext } from "@/app/contexts/ContextProvider";
-import DashboardNavbar from "@/app/(dashboard)/components/DashboardNavbar";
-import Footer from "@/components/ui/Footer";
+import { AuthGuard } from "src/app/hooks/useAuth";
+import { CartContextProvider } from "src/app/contexts/CartContextProvider";
+import Sidebar from "src/app/(dashboard)/components/Sidebar";
+import { useStateContext } from "src/app/contexts/ContextProvider";
+import DashboardNavbar from "src/app/(dashboard)/components/DashboardNavbar";
+import Footer from "src/app/components/ui/Footer";
 
 import styles from "@/styles/dashboard.module.css";
 

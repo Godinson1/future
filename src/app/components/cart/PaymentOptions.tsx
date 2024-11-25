@@ -4,7 +4,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { formatter } from "@/app/lib/utils";
+import { formatter } from "src/app/lib/utils";
 
 interface IPaymentSelectSection {
   setPaymentMethod: React.Dispatch<React.SetStateAction<string>>;

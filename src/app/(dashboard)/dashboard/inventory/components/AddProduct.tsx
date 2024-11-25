@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import { useStateContext } from "@/app/contexts/ContextProvider";
+import { useStateContext } from "src/app/contexts/ContextProvider";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField/TextField";
 import Image from "next/image";
 import IconButton from "@mui/material/IconButton";
 import Delete from "@mui/icons-material/Delete";
 import { useInventory } from "../hooks/useInventory";
-import { AppLoader } from "@/app/components/ui/Loader";
+import { AppLoader } from "src/app/components/ui/Loader";
 
 const AddProduct = () => {
   const { currentColor } = useStateContext();

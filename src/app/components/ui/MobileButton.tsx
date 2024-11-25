@@ -22,23 +22,11 @@ const MobileButton = () => {
 };
 
 const GooglePlayButton = ({ theme, height, width, url, title }: MobileAppButtonProps) => {
-  return (
-    <MobileAppButton height={height} width={width} name={"Google Play"} theme={theme} title={title} logo={GooglePlayIcon} url={url} />
-  );
+  return <MobileAppButton height={height} width={width} name={"Google Play"} theme={theme} title={title} logo={GooglePlayIcon} url={url} />;
 };
 
 const AppStoreButton = ({ theme, height, width, url, title }: MobileAppButtonProps) => {
-  return (
-    <MobileAppButton
-      height={height}
-      width={width}
-      name={"App Store"}
-      theme={theme}
-      title={title}
-      logo={theme === "dark" ? AppStore  : AppStoreLight}
-      url={url}
-    />
-  );
+  return <MobileAppButton height={height} width={width} name={"App Store"} theme={theme} title={title} logo={theme === "dark" ? AppStore : AppStoreLight} url={url} />;
 };
 
 export default MobileButton;

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ICartData } from "@/app/constants/data";
+import { ICartData } from "src/app/constants/data";
 import product4 from "@/assets/product4.jpg";
 import { CartIncrementor, CartIncrementorProps } from "../ui/Button";
 

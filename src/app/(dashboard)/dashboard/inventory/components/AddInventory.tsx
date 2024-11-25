@@ -1,12 +1,12 @@
 import React from "react";
-import { useStateContext } from "@/app/contexts/ContextProvider";
+import { useStateContext } from "src/app/contexts/ContextProvider";
 import Button from "@mui/material/Button";
 
 import TextField from "@mui/material/TextField/TextField";
 import { useInventory } from "../hooks/useInventory";
 import { IInventory } from "../constants";
-import { AppLoader } from "@/app/components/ui/Loader";
-import AccordionForm from "@/app/components/ui/form/AccordionForm";
+import { AppLoader } from "src/app/components/ui/Loader";
+import AccordionForm from "src/app/components/ui/form/AccordionForm";
 
 interface IAddInventory {
   selectedInputs: IInventory[];

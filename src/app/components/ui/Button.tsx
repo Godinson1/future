@@ -4,8 +4,8 @@ import Button from "@mui/material/Button";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "../../styles/button.module.css";
-import { purchaseType, updateType } from "@/app/hooks/useCart";
-import { ICartData } from "@/app/constants/data";
+import { purchaseType, updateType } from "src/app/hooks/useCart";
+import { ICartData } from "src/app/constants/data";
 import IconButton from "@mui/material/IconButton";
 import Delete from "@mui/icons-material/Delete";
 

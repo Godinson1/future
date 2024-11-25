@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import BaseParagraph from "@/components/Paragraph";
+import BaseParagraph from "src/app/components/Paragraph";
 import OverviewChart1 from "./charts/OverviewChart1";
 import styles from "./styles/overview.module.css";
 

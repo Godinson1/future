@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
-import { ICartData } from "@/app/constants/data";
-import { useStateContext } from "@/app/contexts/ContextProvider";
-import { useViewport } from "@/app/hooks/useViewPort";
-import { useCartContext } from "@/app/contexts/CartContextProvider";
+import { ICartData } from "src/app/constants/data";
+import { useStateContext } from "src/app/contexts/ContextProvider";
+import { useViewport } from "src/app/hooks/useViewPort";
+import { useCartContext } from "src/app/contexts/CartContextProvider";
 import { useQuery } from "react-query";
-import { getProducts } from "@/app/api/inventory/api.product";
+import { getProducts } from "src/app/api/inventory/api.product";
 
 export const usePurchase = () => {
   const [search, setSearch] = useState<string>("");

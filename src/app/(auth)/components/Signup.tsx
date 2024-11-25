@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Copyright from "@/components/ui/Copyright";
+import Copyright from "src/app/components/ui/Copyright";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -9,10 +9,10 @@ import Link from "next/link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useAuth } from "@/app/hooks/useAuth";
+import { useAuth } from "src/app/hooks/useAuth";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { AppLoader } from "@/app/components/ui/Loader";
+import { AppLoader } from "src/app/components/ui/Loader";
 
 const theme = createTheme();
 

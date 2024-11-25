@@ -1,8 +1,8 @@
 import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
 
-import ButtonIcon from "@/app/(dashboard)/components/ButtonIcon";
-import { chatData } from "@/constants/data";
+import ButtonIcon from "src/app/(dashboard)/components/ButtonIcon";
+import { chatData } from "src/app/constants/data";
 import { useStateContext } from "../contexts/ContextProvider";
 import Image from "next/image";
 

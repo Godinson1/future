@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import { ICartData } from "@/app/constants/data";
+import { ICartData } from "src/app/constants/data";
 
 import styles from "@/styles/dashboard.module.css";
 interface PurchaseProps {

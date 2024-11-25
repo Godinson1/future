@@ -1,6 +1,6 @@
-import { InventoryRequest } from "@/app/components/cart/dto/cart.dto";
+import { InventoryRequest } from "src/app/components/cart/dto/cart.dto";
 import { inventoryApi } from "../index";
-import { IInventoryTopUp } from "@/app/(dashboard)/dashboard/inventory/hooks/useInventory";
+import { IInventoryTopUp } from "src/app/(dashboard)/dashboard/inventory/hooks/useInventory";
 
 export const addInventory = (inventoryRequest: InventoryRequest) => {
   return inventoryApi.post("/", inventoryRequest);

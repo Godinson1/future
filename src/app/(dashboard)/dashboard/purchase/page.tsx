@@ -3,15 +3,15 @@
 import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { ICartData } from "@/constants/data";
+import { ICartData } from "src/app/constants/data";
 import styles from "@/styles/dashboard.module.css";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import ProductBase from "../../components/ProductBase";
 import { usePurchase } from "./hooks/usePurchase";
-import { useCartContext } from "@/app/contexts/CartContextProvider";
+import { useCartContext } from "src/app/contexts/CartContextProvider";
 import product4 from "@/assets/product4.jpg";
-import { AppLoader } from "@/app/components/ui/Loader";
+import { AppLoader } from "src/app/components/ui/Loader";
 
 const PurchaseOrderSteppers = dynamic(() => import("./components/PurchaseStepper"), {
   ssr: false,

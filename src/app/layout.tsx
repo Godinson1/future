@@ -2,7 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
-import { ViewportProvider } from "@/hooks/useViewPort";
+import { ViewportProvider } from "src/app/hooks/useViewPort";
 import { ContextProvider } from "./contexts/ContextProvider";
 import { AuthProvider } from "./hooks/useAuth";
 

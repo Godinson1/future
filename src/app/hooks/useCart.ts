@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { ICartData } from "@/constants/data";
+import { ICartData } from "src/app/constants/data";
 import { useMutation } from "react-query";
 import { getErrorMessage } from "../lib/utils";
 import { placeOrder } from "../api/order/api.order";

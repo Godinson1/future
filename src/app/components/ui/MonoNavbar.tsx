@@ -3,7 +3,7 @@
 import React from "react";
 import { Roboto } from "next/font/google";
 import styles from "../../styles/navbar.module.css";
-import Logo from "@/app/components/ui/Logo";
+import Logo from "src/app/components/ui/Logo";
 import { useRouter } from "next/navigation";
 
 const inter = Roboto({ subsets: ["latin"], weight: "900" });

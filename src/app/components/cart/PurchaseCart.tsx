@@ -1,7 +1,7 @@
 import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import Divider from "@mui/material/Divider";
-import ButtonIcon from "@/app/(dashboard)/components/ButtonIcon";
+import ButtonIcon from "src/app/(dashboard)/components/ButtonIcon";
 import Timer from "@mui/icons-material/Timer";
 import { ICartData } from "../../constants/data";
 import TextField from "@mui/material/TextField";
@@ -11,10 +11,10 @@ import DeliveryTip from "./DeliveryTip";
 import { CartOrderRequest } from "./dto/cart.dto";
 import { useCartContext } from "../../contexts/CartContextProvider";
 import CartItems from "./CartItems";
-import { useStateContext } from "@/app/contexts/ContextProvider";
-import { formatter } from "@/app/lib/utils";
-import { useAuth } from "@/app/hooks/useAuth";
-import { tipMapper } from "@/app/hooks/useCart";
+import { useStateContext } from "src/app/contexts/ContextProvider";
+import { formatter } from "src/app/lib/utils";
+import { useAuth } from "src/app/hooks/useAuth";
+import { tipMapper } from "src/app/hooks/useCart";
 
 const PurchaseCart = () => {
   const { user } = useAuth();

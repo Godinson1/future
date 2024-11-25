@@ -6,7 +6,7 @@ import Backdrop from "@mui/material/Backdrop";
 import styles from "@/styles/main.module.css";
 import IconButton from "@mui/material/IconButton";
 import { MdOutlineCancel } from "react-icons/md";
-import { useStateContext } from "@/app/contexts/ContextProvider";
+import { useStateContext } from "src/app/contexts/ContextProvider";
 
 interface ModalProviderProps {
   children: React.ReactNode;

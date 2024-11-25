@@ -1,5 +1,5 @@
 import React from "react";
-import { useStateContext } from "@/app/contexts/ContextProvider";
+import { useStateContext } from "src/app/contexts/ContextProvider";
 
 interface ButtonIconProps {
   icon?: any;
@@ -19,13 +19,7 @@ const ButtonIcon = ({ icon, bgColor, color, bgHoverColor, size, text, borderRadi
   const handleClick = () => setIsClicked(initialState);
 
   return (
-    <button
-      type='button'
-      onClick={onClick ?? handleClick}
-      style={{ backgroundColor: bgColor, color, borderRadius }}
-      disabled={disabled}
-      className={` text-${size} p-3 w-${width} hover:drop-shadow-xl hover:bg-${bgHoverColor}`}
-    >
+    <button type='button' onClick={onClick ?? handleClick} style={{ backgroundColor: bgColor, color, borderRadius }} disabled={disabled} className={` text-${size} p-3 w-${width} hover:drop-shadow-xl hover:bg-${bgHoverColor}`}>
       {icon} {text}
     </button>
   );

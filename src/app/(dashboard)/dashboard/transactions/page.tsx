@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "@/styles/dashboard.module.css";
-import DataTable from "@/app/components/ui/Lists/CustomTable";
+import DataTable from "src/app/components/ui/Lists/CustomTable";
 
 const page = () => {
   return (

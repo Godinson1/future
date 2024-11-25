@@ -21,16 +21,16 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/styles/*": ["./src/app/styles/*"],
-      "@/components/*": ["./src/app/components/*"],
-      "@/lib/*": ["./src/app/lib/*"],
-      "@/ui/*": ["./src/app/components/ui/*"],
-      "@/assets/*": ["./src/app/assets/*"],
-      "@/constants/*": ["./src/app/constants/*"],
-      "@/hooks/*": ["./src/app/hooks/*"]
+      "@/*": ["src/app/*"],
+      "@/styles/*": ["src/app/styles/*"],
+      "@/components/*": ["src/app/components/*"],
+      "@/lib/*": ["src/app/lib/*"],
+      "@/ui/*": ["src/app/components/ui/*"],
+      "@/assets/*": ["src/app/assets/*"],
+      "@/constants/*": ["src/app/constants/*"],
+      "@/hooks/*": ["src/app/hooks/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.setup.js", "jest.config.js"],
   "exclude": ["node_modules"]
 }

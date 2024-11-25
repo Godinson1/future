@@ -1,9 +1,9 @@
 import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
 
-import Button from "@/app/(dashboard)/components/ButtonIcon";
+import Button from "src/app/(dashboard)/components/ButtonIcon";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import { userProfileData } from "@/constants/data";
+import { userProfileData } from "src/app/constants/data";
 import { useStateContext } from "../contexts/ContextProvider";
 import Image from "next/image";
 import { useAuth } from "../hooks/useAuth";
