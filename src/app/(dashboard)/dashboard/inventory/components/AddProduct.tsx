@@ -11,7 +11,7 @@ import { AppLoader } from "src/app/components/ui/Loader";
 
 const AddProduct = () => {
   const { currentColor } = useStateContext();
-  const { getPrevImageUrl, handleAddProduct, createProductLoading, handleProductInput, setPrevImageUrl, prevImageUrl, removeImage } = useInventory();
+  const { getPrevImageUrl, handleAddProduct, createProductLoading, handleProductInput, setPrevImageUrl, prevImageUrl, removeImage, handleMultipleFileSelect } = useInventory();
 
   return (
     <div>
@@ -45,7 +45,7 @@ const AddProduct = () => {
             </IconButton>
           </div>
         )}
-        <input type='file' onChange={(e) => getPrevImageUrl(e, 1)} id='inventory_file' style={{ display: "none" }} />
+        <input type='file' onChange={(e) => handleMultipleFileSelect(e, 1)} id='inventory_file' style={{ display: "none" }} />
       </div>
       <Button variant='contained' onClick={() => handleAddProduct()} disabled={createProductLoading} style={{ backgroundColor: currentColor }} sx={{ height: 60, fontWeight: "bold" }} fullWidth>
         {createProductLoading ? <AppLoader /> : "Add Product"}
