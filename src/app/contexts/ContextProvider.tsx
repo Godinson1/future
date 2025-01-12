@@ -1,5 +1,6 @@
 "use client";
 
+import { useViewport } from "@/hooks/useViewPort";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 const initialState = {
@@ -29,6 +30,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setIsClicked] = useState(initialState);
   const [isModalPageClicked, setIsModalPageClicked] = useState(initialModalState);
+  const { width } = useViewport();
+  const inputWidth = width < 768 ? "100%" : 250;
 
   const setMode = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentMode(e.target.value);
@@ -63,6 +66,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         setThemeSettings,
         isModalPageClicked,
         handleModalPageClick,
+        inputWidth,
       }}
     >
       {children}

@@ -22,7 +22,7 @@ const Page = () => {
   return (
     <div>
       <div className={styles.payment_container}>
-        <PaymentTotalCard title='Main Balance' balance='895.30' currency='usd' status_flag active />
+        <PaymentTotalCard title='Main Balance' balance='895.30' currency='usd' status_flag active={false} />
         <PaymentTotalCard title='Loan' balance='895.30' currency='usd' />
         <PaymentTotalCard title='Investment' balance='895.30' currency='usd' />
         <PaymentTotalCard title='Bitcoin' balance='895.30' currency='btc' />

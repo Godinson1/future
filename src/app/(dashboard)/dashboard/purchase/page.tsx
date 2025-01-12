@@ -21,8 +21,6 @@ const Page = () => {
   const { activeSteps } = useCartContext();
   const { addToCart, isCartData, currentColor, setSearch, getCategories, filterByCategory, filteredItems, inputWidth, productItems, productsLoading } = usePurchase();
 
-  console.log("prod", productItems);
-
   const getFilteredList = (filteredList: ICartData[]) => {
     return filteredList.length < 1 ? (
       <div className='w-full text-center'>

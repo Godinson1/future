@@ -1,7 +1,7 @@
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineStock, AiOutlineBarChart } from "react-icons/ai";
 import { FiHome } from "react-icons/fi";
 import { BsKanban } from "react-icons/bs";
-import { IoMdContacts } from "react-icons/io";
+import { IoMdContacts, IoMdMailOpen } from "react-icons/io";
 import { RiContactsLine } from "react-icons/ri";
 
 export const SIDEBAR_LINKS = [
@@ -32,6 +32,11 @@ export const SIDEBAR_LINKS = [
         name: "transactions",
         icon: <RiContactsLine />,
         path: "/dashboard/transactions",
+      },
+      {
+        name: "messages",
+        icon: <IoMdMailOpen />,
+        path: "/dashboard/messages",
       },
     ],
   },

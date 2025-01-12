@@ -23,6 +23,8 @@ interface TableListProps {
 const TableList = ({ title, headerCells, data, handleSelectedInput }: TableListProps) => {
   const { handleClick, rows, page, selected, rowsPerPage, order, orderBy, handleSelectAllClick, handleRequestSort, handleChangePage, handleChangeRowsPerPage, isSelected, emptyRows } = useTable(data);
 
+  console.log("check", rows);
+
   const stringColumns = ["productName", "productId", "status"];
   const handleRowClick = (event: React.MouseEvent<unknown>, row: any) => {
     handleClick(event, row.productName);

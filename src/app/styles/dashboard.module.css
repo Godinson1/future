@@ -121,6 +121,10 @@
   width: 300;
 }
 
+.date_range {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 640px) {
   .purchase_container {
     width: 100%;
